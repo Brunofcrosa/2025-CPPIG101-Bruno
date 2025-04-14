@@ -1,150 +1,403 @@
 {% extends "principal.html" %}
 {% block content %}
-<section class="position-relative bg-gradient bg-primary py-5 py-md-7 text-white">
-  <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
 
-  <div class="container position-relative z-1">
-    <div class="text-center mx-auto" style="max-width: 768px;">
-      <h1 class="display-4 fw-bold mb-4">
-        Encontre o imóvel perfeito para você
-      </h1>
-      <p class="lead mb-5">
-        Milhares de opções para compra, venda ou aluguel com os melhores profissionais do mercado.
-      </p>
-
-      <div class="bg-white p-4 p-md-5 rounded shadow text-dark">
-        <form>
-          <div class="row g-3">
-            <div class="col-md-4">
-              <label for="localizacao" class="form-label fw-medium">
-                <i class="bi bi-geo-alt-fill me-1"></i> Localização
-              </label>
-              <input type="text" id="localizacao" class="form-control" placeholder="Cidade, bairro ou região">
+<div class="main-content" id="mainContent">
+  <div class="content">
+    <div class="row g-4 mb-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Imóveis</h6>
+              <div class="icon bg-primary">
+                <i class="bi bi-house text-white"></i>
+              </div>
             </div>
-
-            <div class="col-md-4">
-              <label for="tipo" class="form-label fw-medium">
-                <i class="bi bi-house-door-fill me-1"></i> Tipo de Imóvel
-              </label>
-              <select id="tipo" class="form-select">
-                <option selected disabled>Selecione o tipo</option>
-                <option value="apartment">Apartamento</option>
-                <option value="house">Casa</option>
-                <option value="commercial">Comercial</option>
-                <option value="land">Terreno</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label for="transacao" class="form-label fw-medium">
-                Transação
-              </label>
-              <select id="transacao" class="form-select">
-                <option selected disabled>Comprar ou alugar</option>
-                <option value="buy">Comprar</option>
-                <option value="rent">Alugar</option>
-              </select>
-            </div>
+            <h3 class="card-text mb-1">XX</h3>
+            <small class="text-muted">Imóveis cadastrados</small>
           </div>
-
-          <div class="mt-4 text-center text-md-start">
-            <button type="submit" class="btn btn-primary w-100 w-md-auto">
-              <i class="bi bi-search me-2"></i> Buscar Imóveis
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<section id="properties" class="py-5 bg-light">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold mb-3 fs-2">Imóveis em Destaque</h2>
-      <p class="text-muted mx-auto" style="max-width: 600px;">
-        Selecionamos os melhores imóveis disponíveis para você. Explore nossa coleção exclusiva para encontrar o lugar perfeito.
-      </p>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Clientes</h6>
+              <div class="icon bg-secondary">
+                <i class="bi bi-people text-white"></i>
+              </div>
+            </div>
+            <h3 class="card-text mb-1">XX</h3>
+            <small class="text-muted">Clientes cadastrados</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Corretores</h6>
+              <div class="icon bg-accent">
+                <i class="bi bi-person-badge text-white"></i>
+              </div>
+            </div>
+            <h3 class="card-text mb-1">XX</h3>
+            <small class="text-muted">Corretores ativos</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Visitas</h6>
+              <div class="icon bg-success">
+                <i class="bi bi-calendar text-white"></i>
+              </div>
+            </div>
+            <h3 class="card-text mb-1">XX</h3>
+            <small class="text-muted">Visitas agendadas</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Transações</h6>
+              <div class="icon bg-warning">
+                <i class="bi bi-file-text text-white"></i>
+              </div>
+            </div>
+            <h3 class="card-text mb-1">XX</h3>
+            <small class="text-muted">Transações realizadas</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+        <div class="stat-card card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="card-title mb-0">Volume</h6>
+              <div class="icon bg-dark">
+                <i class="bi bi-credit-card text-white"></i>
+              </div>
+            </div>
+            <h3 class="card-text mb-1">R$ XX</h3>
+            <small class="text-muted">Volume total</small>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row g-4">
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+      <div class="col-12 col-lg-8">
+        <div class="card shadow-sm h-100">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Imóveis Recentes</h5>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <div class="property-card card h-100 border">
+                  <img src="/static/img/casa1.jpeg" class="card-img-top" alt="Imóvel">
+                  <span class="badge bg-dark">Venda</span>
+                  <div class="card-body">
+                    <small class="text-muted">COD-001</small>
+                    <h5 class="card-title mt-1">XXX</h5>
+                    <p class="card-text text-muted">Rua XX, 123, XX, XX</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="fw-bold">R$ XX.XX</span>
+                      <div class="text-muted small">
+                        <span>3 quartos</span>
+                        <span> • </span>
+                        <span>2 banheiros</span>
+                        <span> • </span>
+                        <span>75m²</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        
+              <div class="col-12 col-md-6">
+                <div class="property-card card h-100 border">
+                  <img src="/static/img/casa1.jpeg" class="card-img-top" alt="Imóvel">
+                  <span class="badge bg-dark">Venda</span>
+                  <div class="card-body">
+                    <small class="text-muted">COD-001</small>
+                    <h5 class="card-title mt-1">XXX</h5>
+                    <p class="card-text text-muted">Rua XX, 123, XX, XX</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="fw-bold">R$ XX.XX</span>
+                      <div class="text-muted small">
+                        <span>3 quartos</span>
+                        <span> • </span>
+                        <span>2 banheiros</span>
+                        <span> • </span>
+                        <span>75m²</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <div class="property-card card h-100 border">
+                  <img src="/static/img/casa1.jpeg" class="card-img-top" alt="Imóvel">
+                  <span class="badge bg-dark">Venda</span>
+                  <div class="card-body">
+                    <small class="text-muted">COD-001</small>
+                    <h5 class="card-title mt-1">XXX</h5>
+                    <p class="card-text text-muted">Rua XX, 123, XX, XX</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="fw-bold">R$ XX.XX</span>
+                      <div class="text-muted small">
+                        <span>3 quartos</span>
+                        <span> • </span>
+                        <span>2 banheiros</span>
+                        <span> • </span>
+                        <span>75m²</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-md-6">
+                <div class="property-card card h-100 border">
+                  <img src="/static/img/casa1.jpeg" class="card-img-top" alt="Imóvel">
+                  <span class="badge bg-dark">Venda</span>
+                  <div class="card-body">
+                    <small class="text-muted">COD-001</small>
+                    <h5 class="card-title mt-1">XXX</h5>
+                    <p class="card-text text-muted">Rua XX, 123, XX, XX</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="fw-bold">R$ XX.XX</span>
+                      <div class="text-muted small">
+                        <span>3 quartos</span>
+                        <span> • </span>
+                        <span>2 banheiros</span>
+                        <span> • </span>
+                        <span>75m²</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+      <div class="col-12 col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Visitas Agendadas</h5>
           </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
           <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+
+            <div class="visit-item border p-3 mb-3">
+              <div class="d-flex">
+                <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary p-2 rounded me-3">
+                  <i class="bi bi-calendar"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between">
+                    <h6 class="mb-1">Apartamento XX</h6>
+                    <span class="badge-status badge-warning">Agendada</span>
+                  </div>
+                  <small class="text-muted d-block">XX/XX/XXXX às XX:XX</small>
+                  <small class="text-muted">Corretor: XXXX</small>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="visit-item border p-3 mb-3">
+              <div class="d-flex">
+                <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary p-2 rounded me-3">
+                  <i class="bi bi-calendar"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between">
+                    <h6 class="mb-1">Apartamento XX</h6>
+                    <span class="badge-status badge-warning">Agendada</span>
+                  </div>
+                  <small class="text-muted d-block">XX/XX/XXXX às XX:XX</small>
+                  <small class="text-muted">Corretor: XXXX</small>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="visit-item border p-3 mb-3">
+              <div class="d-flex">
+                <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary p-2 rounded me-3">
+                  <i class="bi bi-calendar"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between">
+                    <h6 class="mb-1">Apartamento XX</h6>
+                    <span class="badge-status badge-warning">Agendada</span>
+                  </div>
+                  <small class="text-muted d-block">XX/XX/XXXX às XX:XX</small>
+                  <small class="text-muted">Corretor: XXXX</small>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="visit-item border p-3 mb-3">
+              <div class="d-flex">
+                  <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary p-2 rounded me-3">
+                      <i class="bi bi-calendar"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                      <div class="d-flex justify-content-between">
+                          <h6 class="mb-1">Apartamento XX</h6>
+                          <span class="badge-status badge-warning">Agendada</span>
+                      </div>
+                      <small class="text-muted d-block">XX/XX/XXXX às XX:XX</small>
+                      <small class="text-muted">Corretor: XXXX</small>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100">
-          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Apartamento de Luxo </h5>
-            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
-            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
-            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-5">
-      <a href="#" class="btn btn-success px-4">Ver Todos os Imóveis</a>
+
+    <div class="row g-4 mt-4">
+
+      <div class="col-12 col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Transações Recentes</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Imóvel</th>
+                    <th>Cliente</th>
+                    <th>Corretor</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>XX-XXX</td>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <span class="fw-medium">XXX-XXX</span>
+                        <small class="text-muted">XX,XXX</small>
+                      </div>
+                    </td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td><span class="badge-status badge-success">Concluída</span></td>
+                  </tr>
+                  <tr>
+                    <td>XX-XXX</td>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <span class="fw-medium">XXX-XXX</span>
+                        <small class="text-muted">XX,XXX</small>
+                      </div>
+                    </td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td><span class="badge-status badge-success">Concluída</span></td>
+                  </tr>
+                  <tr>
+                    <td>XX-XXX</td>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <span class="fw-medium">XXX-XXX</span>
+                        <small class="text-muted">XX,XXX</small>
+                      </div>
+                    </td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td><span class="badge-status badge-warning">Pendente</span></td>
+                  </tr>
+                  <tr>
+                    <td>XX-XXX</td>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <span class="fw-medium">XXX-XXX</span>
+                        <small class="text-muted">XX,XXX</small>
+                      </div>
+                    </td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td><span class="badge-status badge-danger">Cancelada</span></td>
+                  </tr>
+                  <tr>
+                    <td>XX-XXX</td>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <span class="fw-medium">XXX-XXX</span>
+                        <small class="text-muted">XX,XXX</small>
+                      </div>
+                    </td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td>XXXXXX XXXXX</td>
+                    <td><span class="badge-status badge-success">Concluída</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Corretor com mais vendas</h5>
+          </div>
+          <div class="card-body">
+            <div id="corretor-venda " style="height: 300px;">
+  
+              <img src="/static/img/casa1.jpeg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
 {% endblock %}
