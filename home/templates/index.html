@@ -1,13 +1,150 @@
 {% extends "principal.html" %}
 {% block content %}
-    <section class="section bg-success p-2 bg-opacity-75">
-        <div class="container text-center text-white">
-            <h1 class="display-1">LavaCar</h1>
-            <h1 class="display-4">Agendamento de Horários</h1>
-            <h1 class="font-weight-normal">Sistema para agendamento de horários</h1>
+<section class="position-relative bg-gradient bg-primary py-5 py-md-7 text-white">
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
+
+  <div class="container position-relative z-1">
+    <div class="text-center mx-auto" style="max-width: 768px;">
+      <h1 class="display-4 fw-bold mb-4">
+        Encontre o imóvel perfeito para você
+      </h1>
+      <p class="lead mb-5">
+        Milhares de opções para compra, venda ou aluguel com os melhores profissionais do mercado.
+      </p>
+
+      <div class="bg-white p-4 p-md-5 rounded shadow text-dark">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="localizacao" class="form-label fw-medium">
+                <i class="bi bi-geo-alt-fill me-1"></i> Localização
+              </label>
+              <input type="text" id="localizacao" class="form-control" placeholder="Cidade, bairro ou região">
+            </div>
+
+            <div class="col-md-4">
+              <label for="tipo" class="form-label fw-medium">
+                <i class="bi bi-house-door-fill me-1"></i> Tipo de Imóvel
+              </label>
+              <select id="tipo" class="form-select">
+                <option selected disabled>Selecione o tipo</option>
+                <option value="apartment">Apartamento</option>
+                <option value="house">Casa</option>
+                <option value="commercial">Comercial</option>
+                <option value="land">Terreno</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="transacao" class="form-label fw-medium">
+                Transação
+              </label>
+              <select id="transacao" class="form-select">
+                <option selected disabled>Comprar ou alugar</option>
+                <option value="buy">Comprar</option>
+                <option value="rent">Alugar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-4 text-center text-md-start">
+            <button type="submit" class="btn btn-primary w-100 w-md-auto">
+              <i class="bi bi-search me-2"></i> Buscar Imóveis
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="properties" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3 fs-2">Imóveis em Destaque</h2>
+      <p class="text-muted mx-auto" style="max-width: 600px;">
+        Selecionamos os melhores imóveis disponíveis para você. Explore nossa coleção exclusiva para encontrar o lugar perfeito.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
         </div>
-    </section>
-    {% block registros %}
-        {% include "registros.html" %}
-    {% endblock %}
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+          <img src="/static/img/casa1.jpeg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Apartamento de Luxo </h5>
+            <p class="text-muted mb-1">Santa Maria, Santa Maria - RS</p>
+            <p class="fw-semibold text-success">Venda • R$ 1.250.000</p>
+            <p class="text-muted small">3 Quartos • 2 Banheiros • 120m² • 2 Vagas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="#" class="btn btn-success px-4">Ver Todos os Imóveis</a>
+    </div>
+  </div>
+</section>
 {% endblock %}

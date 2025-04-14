@@ -1,96 +1,63 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="pt-br" data-bs-theme="light">
-    {% block head %}
-      {% include "head.html" %}
-    {% endblock %}
-    <body>
-        <section class="section bg-success p-2 bg-opacity-75">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-                    <a class="navbar-brand" href="{% url 'index' %}">
-                        <img src="{% static 'img/Carro.png' %}" width="221" height="115">
-                    </a>
-					<div class="container-fluid">
-						<a class="navbar-brand" href="#">Início</a>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-							data-bs-target="#navbarSupportedContent"
-							aria-controls="navbarSupportedContent" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarCliente" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Clientes
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Cliente</a></li>
-										<li><a class="dropdown-item" href="#">Listar Clientes</a></li>
-									</ul>
-								</li>
-                                <li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarFornecedor" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Fornecedores
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Fornecedor</a></li>
-										<li><a class="dropdown-item" href="#">Listar Fornecedores</a></li>
-									</ul>
-								</li>
-                                <li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarFuncionario" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Funcionários
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Funcionário</a></li>
-										<li><a class="dropdown-item" href="#">Listar Funcionários</a></li>
-									</ul>
-								</li>
-                                <li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarServico" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Serviços
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Serviço</a></li>
-										<li><a class="dropdown-item" href="#">Listar Serviços</a></li>
-									</ul>
-								</li>
-                                <li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarProduto" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Produtos
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
-										<li><a class="dropdown-item" href="#">Listar Produtos</a></li>
-									</ul>
-								</li>
-                                <li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarAgendamento" role="button"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										Agendamentos
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Agendamento</a></li>
-										<li><a class="dropdown-item" href="#">Listar Agendamentos</a></li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-            </div>
-        </section>
-        {% block content %} {% endblock %}
+<head>
 
-        {% block footer %}
-          {% include "footer.html" %}
-        {% endblock %}
-    </body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    {% block head %}
+        {% include "head.html" %}
+    {% endblock %}
+</head>
+<body>
+    <header class="sticky-top bg-white shadow-sm w-100">
+        <div class="container-fluid px-4 py-3 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="/" class="d-flex align-items-center text-decoration-none">
+                    <span class="fs-2 fw-bold text-primary">Imobiliaria</span>
+                </a>
+            </div>
+
+            <nav class="d-none d-md-flex align-items-center">
+                <a href="#properties" class="text-dark mx-3">Imóveis</a>
+                <a href="#agents" class="text-dark mx-3">Corretores</a>
+                <a href="#about" class="text-dark mx-3">Sobre</a>
+                <a href="#contact" class="text-dark mx-3">Contato</a>
+                <a href="#" class="btn btn-success ms-4">
+                    <i class="bi bi-person me-2"></i>
+                    Área do Cliente
+                </a>
+            </nav>
+
+            <button class="btn d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+                <i class="bi bi-list fs-3"></i>
+            </button>
+        </div>
+
+        <div class="collapse d-md-none bg-white border-top" id="mobileMenu">
+            <div class="container-fluid px-4 py-3">
+                <a href="#properties" class="text-dark d-block py-2 px-4">Imóveis</a>
+                <a href="#agents" class="text-dark d-block py-2 px-4">Corretores</a>
+                <a href="#about" class="text-dark d-block py-2 px-4">Sobre</a>
+                <a href="#contact" class="text-dark d-block py-2 px-4">Contato</a>
+                <a href="#" class="btn btn-success w-100">
+                    <i class="bi bi-person me-2"></i>
+                    Área do Cliente
+                </a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+        {% include "footer.html" %}
+    {% endblock %}
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+</body>
 </html>
