@@ -1,0 +1,49 @@
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 bg-white border-end"
+  style="width: 280px; height: calc(100vh - 73px); position: sticky; top: 73px;">
+  <div class="p-3 border-bottom d-flex align-items-center justify-content-center">
+    <h6 class="mb-0 text-uppercase fw-semibold text-muted">
+      Menu Principal
+    </h6>
+  </div>
+  <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItems">
+    <li class="nav-item mb-1">
+      <a href="/"
+        class="nav-link {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-speedometer2 me-3 fs-5"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a href="/imovel" 
+        class="nav-link {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-house-door me-3 fs-5"></i>
+        <span>Imóveis</span>
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a href="/clientes" 
+        class="nav-link {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-people me-3 fs-5"></i>
+        <span>Clientes</span>
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a href="/agendamentos" 
+        class="nav-link {% if request.path|slice:':13' == '/agendamentos' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-calendar-event me-3 fs-5"></i>
+        <span>Agendamentos</span>
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a href="/relatorios" 
+        class="nav-link {% if request.path|slice:':11' == '/relatorios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-bar-chart me-3 fs-5"></i>
+        <span>Relatórios</span>
+      </a>
+    </li>
+  </ul>
+</div>

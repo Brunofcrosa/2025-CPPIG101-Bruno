@@ -1,0 +1,153 @@
+{% extends "principal.html" %}
+
+{% block content %}
+<div class="container-fluid px-1 pt-1">
+    <div class="row mb-1">
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="card-body pb-0">
+                    <div class="d-flex align-items-center">
+                        <div class="input-group flex-grow-1">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-search text-muted"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0" placeholder="Pesquisar imóveis...">
+                        </div>
+                        <button class="btn btn-outline-secondary ms-2 p-1">
+                            <i class="bi bi-funnel fs-6"></i> Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4 mb-4">
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="card-header bg-white border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0 fw-semibold">Imóveis adicionados recentemente</h5>
+                        <div class="dropdown">
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Mais recentes</a></li>
+                                <li><a class="dropdown-item" href="#">Menor preço</a></li>
+                                <li><a class="dropdown-item" href="#">Maior preço</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body pt-3">
+                    <div class="row g-3">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
+                                        alt="Imóvel">
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-muted">Codigo</small>
+                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
+                                    <p class="card-text text-muted mb-3">Localizacao</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <div class="text-muted small">
+                                            <i class="bi bi-door-open"></i> x
+                                            <i class="bi bi-droplet ms-2"></i> x
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
+                                    <button class="btn btn-sm btn-outline-primary w-100">
+                                        Ver detalhes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
+                                        alt="Imóvel">
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-muted">Codigo</small>
+                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
+                                    <p class="card-text text-muted mb-3">Localizacao</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <div class="text-muted small">
+                                            <i class="bi bi-door-open"></i> x
+                                            <i class="bi bi-droplet ms-2"></i> x
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
+                                    <button class="btn btn-sm btn-outline-primary w-100">
+                                        Ver detalhes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
+                                        alt="Imóvel">
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-muted">Codigo</small>
+                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
+                                    <p class="card-text text-muted mb-3">Localizacao</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <div class="text-muted small">
+                                            <i class="bi bi-door-open"></i> x
+                                            <i class="bi bi-droplet ms-2"></i> x
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
+                                    <button class="btn btn-sm btn-outline-primary w-100">
+                                        Ver detalhes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
+                                        alt="Imóvel">
+                                </div>
+                                <div class="card-body">
+                                    <small class="text-muted">Codigo</small>
+                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
+                                    <p class="card-text text-muted mb-3">Localizacao</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <div class="text-muted small">
+                                            <i class="bi bi-door-open"></i> x
+                                            <i class="bi bi-droplet ms-2"></i> x
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i>XXXm²
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
+                                    <button class="btn btn-sm btn-outline-primary w-100">Ver detalhes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary px-4 py-2 rounded-1">Mostrar mais</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
