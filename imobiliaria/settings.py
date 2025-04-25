@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS += ['home','imovel', ]
+INSTALLED_APPS += ['home','imovel', 'cliente', 'visita', ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

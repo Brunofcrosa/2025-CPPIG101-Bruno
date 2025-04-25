@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('', include('imovel.urls')),
+    path('', include('cliente.urls')),
+    path('', include('visita.urls')),
 ]
