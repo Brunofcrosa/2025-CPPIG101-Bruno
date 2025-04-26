@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS += ['home','imovel', 'cliente', 'visita', ]
+INSTALLED_APPS += ['home','imovel', 'cliente', 'visita','corretor' ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,6 +66,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'imovel.context_processors.total_imoveis',
+                'cliente.context_processors.total_clientes',
+                'visita.context_processors.total_visitas',
+                'corretor.context_processors.total_corretores',
             ],
         },
     },

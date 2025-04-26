@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('imovel.urls')),
     path('', include('cliente.urls')),
     path('', include('visita.urls')),
+    path('', include('corretor.urls')),
 ]

@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView
 class ImovelListView(ListView):
     model = Imovel
     template_name = 'imovel.html'
+    context_object_name = 'imoveis'
 
 class ImovelAddView(CreateView):
     model = Imovel
