@@ -16,8 +16,8 @@
                                         <i class="bi bi-person text-icon-purple fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">Total de Agendamentos</p>
-                                        <p class="h3 fw-bold mb-0">XX</p>
+                                        <p class="text-muted-foreground mb-0 small">Total de visita</p>
+                                        <p class="h3 fw-bold mb-0">{{ total_visita }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                         <i class="bi bi-person text-icon-green fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">Agendas Ativos</p>
+                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
                                         <p class="h3 fw-bold mb-0">XX</p>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                         <i class="bi bi-person text-icon-red fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">Meta diária</p>
+                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
                                         <p class="h3 fw-bold mb-0">XX</p>
                                     </div>
                                 </div>
@@ -48,46 +48,97 @@
                 </div>
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0 fw-bold">Lista de Agendamentos</h5>
-                        <div class="position-relative">
-                            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                            <input type="text" class="form-control ps-5" placeholder="Buscar cliente" style="width: 300px;">
+                        <h5 class="card-title mb-0 fw-bold">Lista de visita</h5>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="position-relative">
+                                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                <input type="text" class="form-control ps-5" placeholder="Buscar visita..." style="width: 600px;" value="{{ request.GET.buscar }}">
+                            </div>
+                            <a href="{% url 'visita_adicionar' %}" class="btn btn-primary">Cadastrar visita</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
+                            <table class="table table-hover table-striped">
+                                <thead class="table-light text-center">
                                     <tr>
+                                        <th>Cliente</th>
                                         <th>Nome</th>
                                         <th>Email</th>
                                         <th>Telefone</th>
                                         <th>Tipo</th>
                                         <th>Último Contato</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="cursor-pointer">
-                                        <td class="fw-bold">Nome</td>
-                                        <td>email</td>
-                                        <td>(XX) XXXXX-XXXX</td>
-                                        <td>XXXXX</td>
-                                        <td>XX/XX/XXXX</td>
+                                <tbody class="text-center">
+                                    {% for visita in object_list %}
+                                    <tr>
+                                        <td>
+                                            {% if visita.foto %}
+                                            <img src="{{ visita.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do visita"/>
+                                            {% else %}
+                                            <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
+                                                <i class="bi bi-person text-muted fs-5"></i>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                        <td class="fw-bold">{{ visita.nome }}</td>
+                                        <td>{{ visita.email|default:"-" }}</td>
+                                        <td>{{ visita.telefone|default:"-" }}</td>
+                                        <td>{{ visita.get_tipo_display|default:"-" }}</td>
+                                        <td>{{ visita.ultimo_contato|default:"-" }}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-outline-primary" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a href="{% url 'visita_apagar' visita.pk %}" class="btn btn-outline-danger" title="Excluir">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal{{visita.id}}">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    <tr class="cursor-pointer">
-                                        <td class="fw-bold">Nome</td>
-                                        <td>email</td>
-                                        <td>(XX) XXXXX-XXXX</td>
-                                        <td>XXXXX</td>
-                                        <td>XX/XX/XXXX</td>
-                                    </tr>
-                                    <tr class="cursor-pointer">
-                                        <td class="fw-bold">Nome</td>
-                                        <td>email</td>
-                                        <td>(XX) XXXXX-XXXX</td>
-                                        <td>XXXXX</td>
-                                        <td>XX/XX/XXXX</td>
-                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{ visita.id }}" tabindex="-1" aria-labelledby="modalLabel{{ visita.id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel{{ visita.id }}">Detalhes do visita</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4 text-center mb-3">
+                                                            {% if visita.foto %}
+                                                            <img src="{{ visita.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do visita"/>
+                                                            {% else %}
+                                                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
+                                                                <i class="bi bi-person text-muted fs-1"></i>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="fw-bold">{{ visita.endereco }}</h6>
+                                                            <p class="text-muted mb-2">{{ visita.get_tipo_display }}</p>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Último Contato:</strong> {{ visita.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                    <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-primary">Editar Visita</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
