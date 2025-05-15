@@ -1,153 +1,153 @@
 {% extends "principal.html" %}
-
 {% block content %}
-<div class="container-fluid px-1 pt-1">
-    <div class="row mb-1">
-        <div class="col-12">
-            <div class="card border-0">
-                <div class="card-body pb-0">
-                    <div class="d-flex align-items-center">
-                        <div class="input-group flex-grow-1">
-                            <span class="input-group-text bg-white border-end-0">
-                                <i class="bi bi-search text-muted"></i>
-                            </span>
-                            <input type="text" class="form-control border-start-0" placeholder="Pesquisar imóveis...">
-                        </div>
-                        <button class="btn btn-outline-secondary ms-2 p-1">
-                            <i class="bi bi-funnel fs-6"></i> Filtros
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row g-4 mb-4">
-        <div class="col-12">
-            <div class="card border-0">
-                <div class="card-header bg-white border-0 pb-0">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0 fw-semibold">Imóveis adicionados recentemente</h5>
-                        <div class="dropdown">
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Mais recentes</a></li>
-                                <li><a class="dropdown-item" href="#">Menor preço</a></li>
-                                <li><a class="dropdown-item" href="#">Maior preço</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-md-9 col-lg-12 p-3">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-4">
 
-                <div class="card-body pt-3">
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
-                                <div class="position-relative overflow-hidden" style="height: 180px;">
-                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
-                                        alt="Imóvel">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="p-2 bg-icon-purple rounded-circle">
+                                    <i class="bi bi-person text-icon-purple fs-5"></i>
                                 </div>
-                                <div class="card-body">
-                                    <small class="text-muted">Codigo</small>
-                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
-                                    <p class="card-text text-muted mb-3">Localizacao</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ XX</span>
-                                        <div class="text-muted small">
-                                            <i class="bi bi-door-open"></i> x
-                                            <i class="bi bi-droplet ms-2"></i> x
-                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
-                                    <button class="btn btn-sm btn-outline-primary w-100">
-                                        Ver detalhes
-                                    </button>
+                                <div>
+                                    <p class="text-muted-foreground mb-0 small">Total de Imoveis</p>
+                                    <p class="h3 fw-bold mb-0">xx</p>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
-                                <div class="position-relative overflow-hidden" style="height: 180px;">
-                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
-                                        alt="Imóvel">
+
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="p-2 bg-icon-green rounded-circle">
+                                    <i class="bi bi-person text-icon-green fs-5"></i>
                                 </div>
-                                <div class="card-body">
-                                    <small class="text-muted">Codigo</small>
-                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
-                                    <p class="card-text text-muted mb-3">Localizacao</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ XX</span>
-                                        <div class="text-muted small">
-                                            <i class="bi bi-door-open"></i> x
-                                            <i class="bi bi-droplet ms-2"></i> x
-                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
-                                    <button class="btn btn-sm btn-outline-primary w-100">
-                                        Ver detalhes
-                                    </button>
+                                <div>
+                                    <p class="text-muted-foreground mb-0 small">XXXXX</p>
+                                    <p class="h3 fw-bold mb-0">XX</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
-                                <div class="position-relative overflow-hidden" style="height: 180px;">
-                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
-                                        alt="Imóvel">
+
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="p-2 bg-icon-red rounded-circle">
+                                    <i class="bi bi-person text-icon-red fs-5"></i>
                                 </div>
-                                <div class="card-body">
-                                    <small class="text-muted">Codigo</small>
-                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
-                                    <p class="card-text text-muted mb-3">Localizacao</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ XX</span>
-                                        <div class="text-muted small">
-                                            <i class="bi bi-door-open"></i> x
-                                            <i class="bi bi-droplet ms-2"></i> x
-                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
-                                    <button class="btn btn-sm btn-outline-primary w-100">
-                                        Ver detalhes
-                                    </button>
+                                <div>
+                                    <p class="text-muted-foreground mb-0 small">XXXXX</p>
+                                    <p class="h3 fw-bold mb-0">XX</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
-                                <div class="position-relative overflow-hidden" style="height: 180px;">
-                                    <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
-                                        alt="Imóvel">
-                                </div>
-                                <div class="card-body">
-                                    <small class="text-muted">Codigo</small>
-                                    <h5 class="card-title mt-1 mb-2">Nome</h5>
-                                    <p class="card-text text-muted mb-3">Localizacao</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ XX</span>
-                                        <div class="text-muted small">
-                                            <i class="bi bi-door-open"></i> x
-                                            <i class="bi bi-droplet ms-2"></i> x
-                                            <i class="bi bi-arrows-angle-contract ms-2"></i>XXXm²
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
-                                    <button class="btn btn-sm btn-outline-primary w-100">Ver detalhes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button class="btn btn-primary px-4 py-2 rounded-1">Mostrar mais</button>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="{% url 'imovel_adicionar' %}" class="btn btn-primary">Cadastrar</a>
+                        <div class="position-relative">
+                            <i
+                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" class="form-control ps-5" placeholder="Buscar imoveis..."
+                                style="width: 790px;" value="{{ request.GET.buscar }}">
+                        </div>
+                        <a href="#" class="btn btn-primary">Buscar</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                        {% for imovel in object_list %}
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                {% if imovel.foto %}
+                                <img src="{{ imovel.foto.url }}" class="img-fluid w-100 h-100 object-fit-cover"
+                                    alt="Imóvel">
+                                {% else %}
+                                <img src="/static/img/casa1.jpeg" class="img-fluid w-100 h-100 object-fit-cover"
+                                    alt="Imóvel">
+                                {% endif %}
+                                <div class="card-body">
+                                    <small class="text-muted">{{imovel.codigoImovel}}</small>
+                                    <h5 class="card-title mt-1 mb-2">{{ imovel.nome }}</h5>
+                                    <p class="card-text text-muted mb-3">{{ imovel.endereco}}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <div class="text-muted small">
+                                            <i class="bi bi-door-open"></i> x
+                                            <i class="bi bi-droplet ms-2"></i> x
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3 text-center">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-outline-primary"
+                                            title="Editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'imovel_apagar' imovel.pk %}" class="btn btn-outline-danger"
+                                            title="Excluir">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#modal{{imovel.id}}">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{ imovel.id }}" tabindex="-1" aria-labelledby="modalLabel{{ imovel.id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel{{ imovel.id }}">Detalhes do imovel de código: {{ imovel.codigoImovel }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-4 text-center mb-3">
+                                                <h6 class="fw-bold">{{ imovel.nome }}</h6>   
+                                                {% if imovel.foto %}
+                                                <img src="{{ imovel.foto.url }}" class="img" width="100%" height="100%" alt="Foto do imovel"/>
+                                                {% else %}
+                                                <div class="bg-light d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px;">
+                                                    <i class="bi bi-person text-muted fs-1"></i>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-8">                                               
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Endereco:</strong> {{ imovel.endereco|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Último Contato:</strong> {{ imovel.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                        <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-primary">Editar imovel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        </main>
     </div>
 </div>
+
+</html>
 {% endblock %}

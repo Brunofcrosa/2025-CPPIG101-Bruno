@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8il3culs-!x9315$iz2q@j6tj^0okqecocham00r4o+$d&o5uy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
 
 
 # Application definition
@@ -67,10 +67,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'imovel.context_processors.total_imoveis',
-                'cliente.context_processors.total_clientes',
-                'visita.context_processors.total_visitas',
-                'corretor.context_processors.total_corretores',
             ],
         },
     },
