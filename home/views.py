@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from imovel.models import Imovel
 from cliente.models import Cliente
-from corretor.models import Corretor
+from corretores.models import Corretor
 from visita.models import Visita
 
 class IndexView(TemplateView):

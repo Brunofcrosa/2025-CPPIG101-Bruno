@@ -1,16 +1,16 @@
 from django.db import models
 from stdimage.models import StdImageField
+from imovel.models import Imovel
+from cliente.models import Cliente
 # Create your models here.
 class Visita(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField()
-    telefone = models.CharField(max_length=15)
-    foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)
-    endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
-    
+    corretor = models.ForeignKey('corretores.Corretor', on_delete=models.CASCADE, related_name='corretor', null=True)
+    imovel = models.ForeignKey('imovel.Imovel', on_delete=models.CASCADE, related_name='imovel', null=True)
+    cliente = models.ForeignKey('cliente.Cliente', on_delete=models.CASCADE, related_name='cliente', null=True)
+    data = models.DateField('Data', help_text='Data da visita', null=True)
+
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
 
-    def __str__(self):
-        return self.nome
+    

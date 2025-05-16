@@ -1,20 +1,9 @@
 from django.db import models
-from stdimage.models import StdImageField
 # Create your models here.
-class Pessoa(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField()
-    telefone = models.CharField(max_length=15)
-    foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.nome
+from pessoa.models import Pessoa
     
 class Cliente(Pessoa):
-    endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
+    codigoCliente = models.CharField('Código do Cliente', max_length=10, unique=True, help_text='Código único do cliente')
 
     class Meta:
         verbose_name = 'Cliente'

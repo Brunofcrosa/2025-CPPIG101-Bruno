@@ -4,14 +4,11 @@ from .models import Visita
 class VisitaModelForm(forms.ModelForm):
     class Meta:
         model = Visita
-        fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
+        fields = ['imovel', 'corretor', 'cliente', 'data']
         
         error_messages = {
-            'nome': {'required': 'O nome do cliente é um campo obrigatório'},
-            'endereco': {'required': 'O endereço do cliente é um campo obrigatório'},
-            'telefone': {'required': 'O número do telefone é um campo obrigatório'},
-            'email': {'required': 'O e-mail do cliente é um campo obrigatório',
-                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com',
-                'unique': 'E-mail já cadastrado'
-            }
+            'imovel': {'required': 'É um campo obrigatório'},
+            'corretor': {'required': 'O corretor é um campo obrigatório'},
+            'cliente': {'required': 'O cliente é um campo obrigatório'},
+            'data': {'required': 'A data é um campo obrigatório'},
         }
