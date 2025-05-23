@@ -24,6 +24,7 @@ class ImovelView(ListView):
             return listagem
         else:
             return messages.info(self.request, 'Nenhum imovel encontrado com esse nome')
+    
 
 class ImovelAddView(SuccessMessageMixin, CreateView):
     model = Imovel

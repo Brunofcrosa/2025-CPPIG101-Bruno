@@ -7,7 +7,7 @@ class Imovel(models.Model):
     codigoImovel = models.CharField('Código do Imóvel', max_length=10, help_text='Código do imóvel')
     foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)  
     endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
-    proprietario = models.ForeignKey('proprietarios.Proprietario', on_delete=models.CASCADE, related_name='proprietario_imovel', null=True)
+    proprietario = models.ManyToManyField(Proprietario, verbose_name='Proprietário', help_text='Selecione o proprietário do imóvel')
 
     class Meta:  
         verbose_name = 'Imóvel'  

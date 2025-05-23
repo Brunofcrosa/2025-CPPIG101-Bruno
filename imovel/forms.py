@@ -4,7 +4,7 @@ from .models import Imovel
 class ImovelModelForm(forms.ModelForm):
     class Meta:
         model = Imovel
-        fields = ['codigoImovel', 'endereco', 'foto', 'nome', 'proprietario']
+        fields = ['nome', 'proprietario', 'codigoImovel', 'endereco', 'foto',]
         
         error_messages = {
             'codigoImovel': {'required': 'Código do Imóvel é obrigatório.', 'unique': 'Este código já está cadastrado.',},

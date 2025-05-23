@@ -4,7 +4,7 @@ from .models import Proprietario
 class ProprietarioModelForm(forms.ModelForm):
     class Meta:
         model = Proprietario
-        fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
+        fields = ['nome', 'endereco', 'telefone', 'email', 'foto', 'codigoProprietario']
         
         error_messages = {
             'nome': {'required': 'O nome do Proprietario é um campo obrigatório'},
