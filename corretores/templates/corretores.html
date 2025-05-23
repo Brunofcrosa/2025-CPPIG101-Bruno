@@ -1,0 +1,156 @@
+{% extends "principal.html" %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-9 col-lg-12 p-3">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-2 bg-icon-purple rounded-circle">
+                                        <i class="bi bi-person text-icon-purple fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-muted-foreground mb-0 small">Total de corretores</p>
+                                        <p class="h3 fw-bold mb-0">{{ total_corretores }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-2 bg-icon-green rounded-circle">
+                                        <i class="bi bi-person text-icon-green fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
+                                        <p class="h3 fw-bold mb-0">XX</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="p-2 bg-icon-red rounded-circle">
+                                        <i class="bi bi-person text-icon-red fs-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
+                                        <p class="h3 fw-bold mb-0">XX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="{% url 'corretor_adicionar' %}" class="btn btn-primary">Cadastrar</a>
+                            <div class="position-relative">
+                                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                <input type="text" class="form-control ps-5" placeholder="Buscar corretores..." style="width: 790px;" value="{{ request.GET.buscar }}">
+                            </div>
+                            <a href="#" class="btn btn-primary">Buscar</a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>Foto</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Tipo</th>
+                                        <th>Último Contato</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    {% for corretor in object_list %}
+                                    <tr>
+                                        <td>
+                                            {% if corretor.foto %}
+                                            <img src="{{ corretor.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do corretor"/>
+                                            {% else %}
+                                            <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
+                                                <i class="bi bi-person text-muted fs-5"></i>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                        <td class="fw-bold">{{ corretor.nome }}</td>
+                                        <td>{{ corretor.email|default:"-" }}</td>
+                                        <td>{{ corretor.telefone|default:"-" }}</td>
+                                        <td>{{ corretor.get_tipo_display|default:"-" }}</td>
+                                        <td>{{ corretor.ultimo_contato|default:"-" }}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="{% url 'corretor_editar' corretor.pk %}" class="btn btn-outline-primary" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a href="{% url 'corretor_apagar' corretor.pk %}" class="btn btn-outline-danger" title="Excluir">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal{{corretor.id}}">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{ corretor.id }}" tabindex="-1" aria-labelledby="modalLabel{{ corretor.id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel{{ corretor.id }}">Detalhes do corretor</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4 text-center mb-3">
+                                                            {% if corretor.foto %}
+                                                            <img src="{{ corretor.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do corretor"/>
+                                                            {% else %}
+                                                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
+                                                                <i class="bi bi-person text-muted fs-1"></i>
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6 class="fw-bold">{{ corretor.nome }}</h6>
+                                                            <p class="text-muted mb-2">{{ corretor.get_tipo_display }}</p>
+                                                            
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Email:</strong> {{ corretor.email|default:"-" }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Telefone:</strong> {{ corretor.telefone|default:"-" }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Último Contato:</strong> {{ corretor.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                    <a href="{% url 'corretor_editar' corretor.pk %}" class="btn btn-primary">Editar corretor</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</html>
+{% endblock %}
