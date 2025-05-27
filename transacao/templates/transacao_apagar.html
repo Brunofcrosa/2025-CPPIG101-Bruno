@@ -4,9 +4,12 @@
 <div class="card shadow m-3 col-md-6 mx-auto">
     <div class="card-body">
         <div class="row">
-            <h3 class="text-center">Dados do transacao</h3>
-            <p class="p-2 mt-2"><strong>Nome: </strong>{{ object.nome }}</p>
-            <p class="p-2 mt-2"><strong>Fone: </strong>{{ object.telefone }}</p>
+            <h3 class="text-center">Dados da transacao</h3>
+            <p class="p-2 mt-2"><strong>codigoTransacao: </strong>{{ object.codigoTransacao }}</p>
+            <p class="p-2 mt-2"><strong>codigoImovel: </strong>{{ object.codigoImovel }}</p>
+            <p class="p-2 mt-2"><strong>Tipo: </strong>{{ object.tipoTransacao}}</p>
+            <p class="p-2 mt-2"><strong>Data: </strong>{{ object.dataTransacao}}</p>
+            <p class="p-2 mt-2"><strong>Valor de Venda: </strong>{{ object.valorVenda}}</p>
             
             {% if object.foto.url is not empty %}
                 <div class="col-2">
@@ -14,7 +17,7 @@
                 </div>
             {% endif %}
             
-            <p class="p-2 mt-2">Confirma a exclusão do transacao: <strong>{{ object }}</strong></p>
+            <p class="p-2 mt-2">Confirma a exclusão da: <strong>{{ object }}</strong></p>
             
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

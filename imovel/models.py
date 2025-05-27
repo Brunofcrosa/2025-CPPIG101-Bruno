@@ -4,7 +4,7 @@ from proprietarios.models import Proprietario
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
-    codigoImovel = models.CharField('Código do Imóvel', max_length=10, help_text='Código do imóvel')
+    codigoImovel = models.CharField('Código do Imóvel', max_length=10, unique=True, help_text='Código único do imóvel', default='Imovel')
     foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)  
     endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
     proprietario = models.ManyToManyField(Proprietario, verbose_name='Proprietário', help_text='Selecione o proprietário do imóvel')
