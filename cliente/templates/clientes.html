@@ -64,8 +64,6 @@
                                         <th>Nome</th>
                                         <th>Email</th>
                                         <th>Telefone</th>
-                                        <th>Tipo</th>
-                                        <th>Último Contato</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -84,8 +82,6 @@
                                         <td class="fw-bold">{{ cliente.nome }}</td>
                                         <td>{{ cliente.email|default:"-" }}</td>
                                         <td>{{ cliente.telefone|default:"-" }}</td>
-                                        <td>{{ cliente.get_tipo_display|default:"-" }}</td>
-                                        <td>{{ cliente.ultimo_contato|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{% url 'cliente_editar' cliente.pk %}" class="btn btn-outline-primary" title="Editar">

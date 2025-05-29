@@ -61,10 +61,8 @@
                                     <tr>
                                         <th>Cliente</th>
                                         <th>Nome</th>
-                                        <th>Email</th>
-                                        <th>Telefone</th>
-                                        <th>Tipo</th>
-                                        <th>Último Contato</th>
+                                        <th>Imóvel</th>
+                                        <th>Data</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -80,11 +78,9 @@
                                             </div>
                                             {% endif %}
                                         </td>
-                                        <td class="fw-bold">{{ visita.nome }}</td>
-                                        <td>{{ visita.email|default:"-" }}</td>
-                                        <td>{{ visita.telefone|default:"-" }}</td>
-                                        <td>{{ visita.get_tipo_display|default:"-" }}</td>
-                                        <td>{{ visita.ultimo_contato|default:"-" }}</td>
+                                        <td class="fw-bold">{{ visita.cliente }}</td>
+                                        <td>{{ visita.imovel|default:"-" }}</td>
+                                        <td>{{ visita.data|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-outline-primary" title="Editar">

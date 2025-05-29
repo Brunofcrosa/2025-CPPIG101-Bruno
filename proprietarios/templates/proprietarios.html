@@ -64,8 +64,6 @@
                                         <th>Nome</th>
                                         <th>Email</th>
                                         <th>Telefone</th>
-                                        <th>Tipo</th>
-                                        <th>Último Contato</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -84,8 +82,6 @@
                                         <td class="fw-bold">{{ proprietario.nome }}</td>
                                         <td>{{ proprietario.email|default:"-" }}</td>
                                         <td>{{ proprietario.telefone|default:"-" }}</td>
-                                        <td>{{ proprietario.get_tipo_display|default:"-" }}</td>
-                                        <td>{{ proprietario.ultimo_contato|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{% url 'proprietario_editar' proprietario.pk %}" class="btn btn-outline-primary" title="Editar">

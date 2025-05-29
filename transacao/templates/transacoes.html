@@ -60,12 +60,12 @@
                             <table class="table table-hover table-striped">
                                 <thead class="table-light text-center">
                                     <tr>
-                                        <th>Foto</th>
-                                        <th>Nome</th>
-                                        <th>Email</th>
-                                        <th>Telefone</th>
+                                        <th>Cliente</th>
+                                        <th>Imovel</th>
+                                        <th>Corretor</th>
                                         <th>Tipo</th>
-                                        <th>Último Contato</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -81,11 +81,11 @@
                                             </div>
                                             {% endif %}
                                         </td>
-                                        <td class="fw-bold">{{ transacao.nome }}</td>
-                                        <td>{{ transacao.email|default:"-" }}</td>
-                                        <td>{{ transacao.telefone|default:"-" }}</td>
-                                        <td>{{ transacao.get_tipo_display|default:"-" }}</td>
-                                        <td>{{ transacao.ultimo_contato|default:"-" }}</td>
+                                        <td class="fw-bold">{{ transacao.codigoImovel }}</td>
+                                        <td>{{ transacao.codigoCorretor|default:"-" }}</td>
+                                        <td>{{ transacao.tipoTransacao|default:"-" }}</td>
+                                        <td>{{ transacao.dataTransacao|default:"-" }}</td>
+                                        <td>{{ transacao.statusTransacao|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-outline-primary" title="Editar">
