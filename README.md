@@ -2,7 +2,7 @@ REGRAS DE NEGÓCIO
 
 Um imóvel deve estar vinculado a pelo menos um proprietário. ✅
 
-Um imóvel só pode estar disponível para locação se não estiver em processo de confirmação de venda.
+Um imóvel só pode estar disponível para locação se não estiver em processo de confirmação de venda. ✅
 
 A área útil e área privativa nunca podem ser maiores que a área total construída.
 
