@@ -11,6 +11,20 @@ class ImovelView(ListView):
     model = Imovel
     template_name = 'imovel.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        self.delete_imoveis_without_proprietarios()
+        return super().dispatch(request, *args, **kwargs)
+    
+    def delete_imoveis_without_proprietarios(self):
+        imoveis_to_delete = Imovel.objects.all()
+        deleted_count = 0
+        for imovel in imoveis_to_delete:
+            if not imovel.has_proprietarios(): 
+                imovel.delete()
+                deleted_count += 1
+        if deleted_count > 0:
+            messages.info(self.request, f'{deleted_count} Imóvel sem proprietário foi automaticamente excluído.')
+
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
         qs = super(ImovelView, self).get_queryset()

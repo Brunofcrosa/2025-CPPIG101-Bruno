@@ -108,12 +108,11 @@
                             </div>
                         </div>
 
-                        <!-- Modal -->
                         <div class="modal fade" id="modal{{ imovel.id }}" tabindex="-1" aria-labelledby="modalLabel{{ imovel.id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel{{ imovel.id }}">Detalhes do imovel de código: {{ imovel.codigoImovel }}</h5>
+                                        <h5 class="modal-title" id="modalLabel{{ imovel.id }}">Detalhes do imóvel de código: {{ imovel.codigoImovel }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     
@@ -122,26 +121,85 @@
                                             <div class="col-md-4 text-center mb-3">
                                                 <h6 class="fw-bold">{{ imovel.nome }}</h6>   
                                                 {% if imovel.foto %}
-                                                <img src="{{ imovel.foto.url }}" class="img" width="100%" height="100%" alt="Foto do imovel"/>
+                                                <img src="{{ imovel.foto.url }}" class="img-fluid rounded" style="max-width: 150px; max-height: 150px; object-fit: cover;" alt="Foto do imóvel"/>
                                                 {% else %}
-                                                <div class="bg-light d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px;">
-                                                    <i class="bi bi-person text-muted fs-1"></i>
+                                                <div class="bg-light d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px; border-radius: 5px;">
+                                                    <i class="bi bi-house text-muted fs-1"></i>
                                                 </div>
                                                 {% endif %}
                                             </div>
                                             <div class="col-md-8">                                               
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Endereco:</strong> {{ imovel.endereco|default:"-" }}</p>
+                                                    <p class="mb-0"><strong>Código do Imóvel:</strong> {{ imovel.codigoImovel|default:"-" }}</p>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Último Contato:</strong> {{ imovel.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                    <p class="mb-0"><strong>Endereço:</strong> {{ imovel.endereco|default:"-" }}</p>
                                                 </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Tipo de Imóvel:</strong> {{ imovel.tipoImovel|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Status:</strong> {{ imovel.status_imovel|default:"Não definido" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Disponível para Locação:</strong> {% if imovel.disponivel_locacao %}Sim{% else %}Não{% endif %}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Proprietário(s):</strong> 
+                                                        {% for proprietario in imovel.proprietario.all %}
+                                                        {{ proprietario.nome }}{% if not forloop.last %}, {% endif %}
+                                                        {% empty %}
+                                                        Nenhum proprietário associado
+                                                        {% endfor %}
+                                                    </p>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Valor de Venda:</strong> R$ {{ imovel.valorVenda|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Valor IPTU:</strong> R$ {{ imovel.valorIPTU|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Valor do Condomínio:</strong> R$ {{ imovel.valorCondominio|default:"-" }}</p>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Área Total:</strong> {{ imovel.areaTotal|default:"-" }} m²</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Área Privativa:</strong> {{ imovel.areaPrivativa|default:"-" }} m²</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Área Útil:</strong> {{ imovel.areaUtil|default:"-" }} m²</p>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Quartos:</strong> {{ imovel.numQuartos|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Banheiros:</strong> {{ imovel.numBanheiros|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Vagas de Garagem:</strong> {{ imovel.vagasGaragem|default:"-" }}</p>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Características:</strong> {{ imovel.caracteristicas|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Comodidades:</strong> {{ imovel.comodidades|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Descrição:</strong> {{ imovel.descricao|default:"-" }}</p>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                        <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-primary">Editar imovel</a>
+                                        <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-primary">Editar imóvel</a>
                                     </div>
                                 </div>
                             </div>
