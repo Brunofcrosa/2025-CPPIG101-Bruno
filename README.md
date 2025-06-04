@@ -6,7 +6,7 @@ Um imóvel só pode estar disponível para locação se não estiver em processo
 
 A área útil e área privativa nunca podem ser maiores que a área total construída.
 
-Cada pessoa deve ter um e-mail único e válido no sistema.
+Cada pessoa deve ter um e-mail único e válido no sistema. ✅
 
 Corretores devem ter uma foto obrigatória no cadastro.
 

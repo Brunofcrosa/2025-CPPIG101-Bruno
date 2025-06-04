@@ -4,7 +4,7 @@ from .models import Corretor
 class CorretorModelForm(forms.ModelForm):
     class Meta:
         model = Corretor
-        fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
+        fields = ['nome', 'endereco', 'telefone', 'email', 'foto', 'codigoCorretor']
         
         error_messages = {
             'nome': {'required': 'O nome do Corretor é um campo obrigatório'},
