@@ -4,13 +4,13 @@ Um imóvel deve estar vinculado a pelo menos um proprietário. ✅
 
 Um imóvel só pode estar disponível para locação se não estiver em processo de confirmação de venda. ✅
 
-A área útil e área privativa nunca podem ser maiores que a área total construída.
+A área útil e área privativa nunca podem ser maiores que a área total construída. ✅
 
 Cada pessoa deve ter um e-mail único e válido no sistema. ✅
 
-Corretores devem ter uma foto obrigatória no cadastro.
+Corretores devem ter uma foto obrigatória no cadastro. ✅
 
-Um corretor não pode ter visitas agendadas no mesmo horário.
+Um corretor não pode ter visitas agendadas no mesmo horário. ✅
 
 Ao gerar uma transação deve ser cancelado as visitas no determinado imóvel ou não permitir a transação se tiver visitas previstas.
 

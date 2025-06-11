@@ -15,13 +15,20 @@ class VisitaModelForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        imovel = cleaned_data.get('imovel') # Pega o imóvel da visita
-
+        imovel = cleaned_data.get('imovel') 
+        corretor = cleaned_data.get('corretor') 
+        data = cleaned_data.get('data')
+        
         if imovel:
-            # Verifica o status do imóvel antes de permitir o agendamento da visita
             if imovel.status_imovel() == 'Em Confirmação de Venda':
                 raise forms.ValidationError(
                     "Não é possível agendar visitas para este imóvel, pois ele está em processo de confirmação de venda."
+                )
+            
+        if data:
+            if Visita.objects.filter(corretor=corretor, data=data).exists():
+                raise forms.ValidationError(
+                    "O corretor já tem uma visita agendada para esta data."
                 )
             
         return cleaned_data

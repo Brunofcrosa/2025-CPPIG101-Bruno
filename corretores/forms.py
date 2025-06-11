@@ -6,11 +6,15 @@ class CorretorModelForm(forms.ModelForm):
         model = Corretor
         fields = ['nome', 'endereco', 'telefone', 'email', 'foto', 'codigoCorretor']
         
+
         error_messages = {
-            'nome': {'required': 'O nome do Corretor é um campo obrigatório'},
-            'endereco': {'required': 'O endereço do Corretor é um campo obrigatório'},
-            'telefone': {'required': 'O número do telefone é um campo obrigatório'},
-            'email': {'required': 'O e-mail do Corretor é um campo obrigatório',
-                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com',
-            }
+            'nome': {'required': 'O nome do Corretor é um campo obrigatório.'},
+            'endereco': {'required': 'O endereço do Corretor é um campo obrigatório.'},
+            'telefone': {'required': 'O número do telefone é um campo obrigatório.'},
+            'email': {
+                'required': 'O e-mail do Corretor é um campo obrigatório.',
+                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com.',
+            }, 
+            'foto': {'required': 'A foto do Corretor é um campo obrigatório.'}, 
         }
+    
