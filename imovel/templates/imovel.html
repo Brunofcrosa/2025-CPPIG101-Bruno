@@ -6,14 +6,13 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="row g-4">
-
                         <div class="col-md-4">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="p-2 bg-icon-purple rounded-circle">
                                     <i class="bi bi-person text-icon-purple fs-5"></i>
                                 </div>
                                 <div>
-                                    <p class="text-muted-foreground mb-0 small">Total de Imoveis</p>
+                                    <p class="text-muted-foreground mb-0 small">Total de Imóveis</p>
                                     <p class="h3 fw-bold mb-0">xx</p>
                                     
                                 </div>
@@ -54,7 +53,7 @@
                         <div class="position-relative">
                             <i
                                 class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                            <input type="text" class="form-control ps-5" placeholder="Buscar imoveis..."
+                            <input type="text" class="form-control ps-5" placeholder="Buscar imóveis..."
                                 style="width: 790px;" value="{{ request.GET.buscar }}">
                         </div>
                         <a href="#" class="btn btn-primary">Buscar</a>
@@ -75,7 +74,7 @@
                                 <div class="card-body">
                                     <small class="text-muted">Codigo: {{imovel.codigoImovel}}</small>
                                     <h5 class="card-title mt-1 mb-2">{{ imovel.nome }}</h5>
-                                    <p class="card-text text-muted mb-3">Proprietarios: 
+                                    <p class="card-text text-muted mb-3">Proprietários: 
                                         {% for proprietario in imovel.proprietario.all %}
                                         {{proprietario.nome}}{% if not forloop.last %}, {% endif %}
                                         {% endfor %}

@@ -41,22 +41,22 @@
       <li class="nav-item mb-1">
         <a href="/corretores" 
           class="nav-link {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
-          <i class="bi bi-bar-chart me-3 fs-5"></i>
+          <i class="bi bi-person me-3 fs-5"></i>
           <span>Corretores</span>
         </a>
       </li>
   
       <li class="nav-item mb-1">
         <a href="/proprietarios/" 
-          class="nav-link {% if request.path|slice:':11' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
-          <i class="bi bi-bar-chart me-3 fs-5"></i>
+          class="nav-link {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          <i class="bi bi-people me-3 fs-5"></i>
           <span>Proprietários</span>
         </a>
       </li>
   
       <li class="nav-item mb-1">
         <a href="/transacao/" 
-          class="nav-link {% if request.path|slice:':11' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-bar-chart me-3 fs-5"></i>
           <span>Transações</span>
         </a>

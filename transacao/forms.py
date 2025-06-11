@@ -8,7 +8,7 @@ class TransacaoModelForm(forms.ModelForm):
         
         error_messages = {
             'codigoTransacao' : {
-                'required': 'O campo Código do Transação é obrigatório.',
+                'required': 'O campo Código da Transação é obrigatório.',
                 'unique': 'Já existe uma transação com este código.',
             }
         }
