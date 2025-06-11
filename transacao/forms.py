@@ -17,6 +17,7 @@ class TransacaoModelForm(forms.ModelForm):
         cleaned_data = super().clean()
         imovel = cleaned_data.get('codigoImovel')
         tipo_transacao = cleaned_data.get('tipoTransacao')
+        status_transacao = cleaned_data.get('statusTransacao')
 
         if imovel:
             if imovel.status_imovel() == 'Em Confirmação de Venda':
@@ -29,4 +30,5 @@ class TransacaoModelForm(forms.ModelForm):
                 raise forms.ValidationError(
                     "Este imóvel não está marcado como disponível para locação."
                 )
+
         return cleaned_data

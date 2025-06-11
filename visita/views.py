@@ -11,6 +11,7 @@ class VisitaView(ListView):
     model = Visita
     template_name = 'visitas.html'
 
+
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
         qs = super(VisitaView, self).get_queryset()
