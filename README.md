@@ -12,11 +12,11 @@ Corretores devem ter uma foto obrigatória no cadastro. ✅
 
 Um corretor não pode ter visitas agendadas no mesmo horário. ✅
 
-Ao gerar uma transação deve ser cancelado as visitas no determinado imóvel ou não permitir a transação se tiver visitas previstas.
+Ao gerar uma transação deve ser cancelado as visitas no determinado imóvel ou não permitir a transação se tiver visitas previstas. ✅
 
-Um imóvel não pode ter mais de uma transação ao mesmo tempo.
+Um imóvel não pode ter mais de uma transação ao mesmo tempo. ✅
 
-O sistema deve aplicar um índice de valorização ao valor de venda de imóveis localizados em regiões específicas, como bairros de luxo ou próximas a universidades.
+O sistema deve aplicar um índice de valorização ao valor de venda de imóveis localizados em regiões específicas, como bairros de luxo ou próximas a universidades. 10% ✅
 
 Separar por perfil de usuário (Corretores) com permissões específicas.
 
