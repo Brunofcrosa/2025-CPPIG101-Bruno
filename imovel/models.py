@@ -2,6 +2,7 @@ from django.db import models
 from stdimage.models import StdImageField
 from proprietarios.models import Proprietario
 from transacao.models import Transacao
+from decimal import Decimal
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
@@ -28,6 +29,14 @@ class Imovel(models.Model):
     descricao = models.TextField('Descrição Completa', null=True, blank=True, help_text='Descrição detalhada do imóvel')
 
     tipoImovel = models.CharField('Tipo de Imóvel', max_length=20, choices=[('Casa', 'Casa'), ('Apartamento', 'Apartamento'), ('Terreno', 'Terreno'), ('Comercial', 'Comercial'), ('Outro', 'Outro'),], null=True, blank=True, help_text='Tipo do imóvel (casa, apartamento, etc.)')
+    
+
+    VALORIZACAO_PADRAO = Decimal('1.10')  # 10% de valorização padrão
+
+    zona_valorizacao = models.BooleanField(
+        default=False, 
+        help_text="Marque se o imóvel está em uma região de valorização especial (ex: bairro de luxo, próximo a universidades)."
+    )
 
     class Meta:  
         verbose_name = 'Imóvel'  
@@ -46,3 +55,11 @@ class Imovel(models.Model):
             return 'Não Disponível para Locação'
         else:
             return 'Disponível para Locação e Venda'
+            
+    def calcular_valor_venda_com_valorizacao(self):
+        if self.valorVenda is None:
+            return None
+        
+        if self.zona_valorizacao:
+            return self.valorVenda * self.VALORIZACAO_PADRAO
+        return self.valorVenda

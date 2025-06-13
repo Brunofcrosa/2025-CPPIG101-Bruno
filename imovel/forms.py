@@ -1,4 +1,3 @@
-# 2025-CPPIG101-Bruno/imovel/forms.py
 from django import forms
 from .models import Imovel
 
@@ -24,7 +23,8 @@ class ImovelModelForm(forms.ModelForm):
             'tipoImovel',          
             'caracteristicas',     
             'comodidades',         
-            'descricao',          
+            'descricao',
+            'zona_valorizacao',         
         ]
         
         error_messages = {

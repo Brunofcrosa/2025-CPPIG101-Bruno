@@ -80,11 +80,11 @@
                                         {% endfor %}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ XX</span>
+                                        <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|default:"0.00" }}</span>
                                         <div class="text-muted small">
-                                            <i class="bi bi-door-open"></i> x
-                                            <i class="bi bi-droplet ms-2"></i> x
-                                            <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                                            <i class="bi bi-door-open"></i> {{ imovel.numQuartos|default:"-" }}
+                                            <i class="bi bi-droplet ms-2"></i> {{ imovel.numBanheiros|default:"-" }}
+                                            <i class="bi bi-arrows-angle-contract ms-2"></i> {{ imovel.areaTotal|default:"-" }}m²
                                         </div>
                                     </div>
                                 </div>
@@ -144,6 +144,9 @@
                                                     <p class="mb-0"><strong>Disponível para Locação:</strong> {% if imovel.disponivel_locacao %}Sim{% else %}Não{% endif %}</p>
                                                 </div>
                                                 <div class="mb-2">
+                                                    <p class="mb-0"><strong>Em Zona de Valorização:</strong> {% if imovel.zona_valorizacao %}Sim{% else %}Não{% endif %}</p>
+                                                </div>
+                                                <div class="mb-2">
                                                     <p class="mb-0"><strong>Proprietário(s):</strong> 
                                                         {% for proprietario in imovel.proprietario.all %}
                                                         {{ proprietario.nome }}{% if not forloop.last %}, {% endif %}
@@ -154,7 +157,10 @@
                                                 </div>
                                                 <hr>
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Valor de Venda:</strong> R$ {{ imovel.valorVenda|default:"-" }}</p>
+                                                    <p class="mb-0"><strong>Valor de Venda (Base):</strong> R$ {{ imovel.valorVenda|default:"-" }}</p>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Valor de Venda (Com Valorização):</strong> R$ {{ imovel.calcular_valor_venda_com_valorizacao|default:"-" }}</p>
                                                 </div>
                                                 <div class="mb-2">
                                                     <p class="mb-0"><strong>Valor IPTU:</strong> R$ {{ imovel.valorIPTU|default:"-" }}</p>
