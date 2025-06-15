@@ -11,6 +11,7 @@ class Visita(models.Model):
     codigoVisita = models.CharField('Código da Visita', max_length=10, unique=True, help_text='Código único da visita', default='Visita')
 
     class Meta:
+        permissions = (('fechar_agendamento', 'Permite fazer o fechamento de uma visita'),)
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
 
