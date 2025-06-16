@@ -3,11 +3,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.urls import reverse_lazy
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Transacao
 from .forms import TransacaoModelForm
 
-class TransacoesView(ListView):
+class TransacoesView(PermissionRequiredMixin, ListView):
+    permission_required = 'transacao.view_transacao'
+    permission_denied_message = 'Você não tem permissão para acessar esta página.'
     model = Transacao
     template_name = 'transacoes.html'
 
@@ -25,21 +27,27 @@ class TransacoesView(ListView):
         else:
             return messages.info(self.request, 'Nenhum transacao encontrado com esse nome')
 
-class TransacaoAddView(SuccessMessageMixin, CreateView):
+class TransacaoAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    permission_required = 'transacao.add_transacao'
+    permission_denied_message = 'Você não tem permissão para acessar esta página.'
     model = Transacao
     form_class = TransacaoModelForm
     template_name = 'transacao_form.html'
     success_url = reverse_lazy('transacao')
     success_message = 'transacao cadastrado com sucesso!'
 
-class TransacaoUpdateView(SuccessMessageMixin, UpdateView):
+class TransacaoUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'transacao.update_transacao'
+    permission_denied_message = 'Você não tem permissão para acessar esta página.'
     model = Transacao
     form_class = TransacaoModelForm
     template_name = 'transacao_form.html'
     success_url = reverse_lazy('transacao')
     success_message = 'transacao alterado com sucesso!'
 
-class TransacaoDeleteView(SuccessMessageMixin, DeleteView):
+class TransacaoDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    permission_required = 'transacao.delete_transacao'
+    permission_denied_message = 'Você não tem permissão para acessar esta página.'
     model = Transacao
     template_name = 'transacao_apagar.html'
     success_url = reverse_lazy('transacao')
