@@ -3,11 +3,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.urls import reverse_lazy
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Proprietario
 from .forms import ProprietarioModelForm
 
-class ProprietariosView(ListView):
+class ProprietariosView(PermissionRequiredMixin, ListView):
+    permission_required = 'proprietarios.view_proprietario'
+    permission_denied_message = 'Você não tem permissão para acessar essa página.'
     model = Proprietario
     template_name = 'proprietarios.html'
 
@@ -25,21 +27,27 @@ class ProprietariosView(ListView):
         else:
             return messages.info(self.request, 'Nenhum Proprietario encontrado com esse nome')
 
-class ProprietarioAddView(SuccessMessageMixin, CreateView):
+class ProprietarioAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    permission_required = 'proprietarios.add_proprietario'
+    permission_denied_message = 'Você não tem permissão para acessar essa página.'
     model = Proprietario
     form_class = ProprietarioModelForm
     template_name = 'proprietario_form.html'
     success_url = reverse_lazy('proprietario')
     success_message = 'Proprietario cadastrado com sucesso!'
 
-class ProprietarioUpdateView(SuccessMessageMixin, UpdateView):
+class ProprietarioUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'proprietarios.change_proprietario'
+    permission_denied_message = 'Você não tem permissão para acessar essa página.'
     model = Proprietario
     form_class = ProprietarioModelForm
     template_name = 'proprietario_form.html'
     success_url = reverse_lazy('proprietario')
     success_message = 'Proprietario alterado com sucesso!'
 
-class ProprietarioDeleteView(SuccessMessageMixin, DeleteView):
+class ProprietarioDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    permission_required = 'proprietarios.delete_proprietario'
+    permission_denied_message = 'Você não tem permissão para acessar essa página.'
     model = Proprietario
     template_name = 'proprietario_apagar.html'
     success_url = reverse_lazy('proprietario')
