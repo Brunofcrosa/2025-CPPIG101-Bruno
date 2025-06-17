@@ -37,7 +37,7 @@ class CorretorAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = 'corretor cadastrado com sucesso!'
 
 class CorretorUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
-    permission_required = 'corretores.update_corretor'
+    permission_required = 'corretores.change_corretor'
     permission_denied_message = 'Alterar corretor'
     model = Corretor
     form_class = CorretorModelForm

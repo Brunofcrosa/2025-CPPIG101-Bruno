@@ -8,7 +8,7 @@ from .models import Imovel
 from .forms import ImovelModelForm
 
 class ImovelView(PermissionRequiredMixin, ListView):
-    permission_required = 'imoveis.view_imovel'
+    permission_required = 'imovel.view_imovel'
     permission_denied_message = 'Visualizar imóvel'
     model = Imovel
     template_name = 'imovel.html'
@@ -43,7 +43,7 @@ class ImovelView(PermissionRequiredMixin, ListView):
     
 
 class ImovelAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
-    permission_required = 'imoveis.add_imovel'
+    permission_required = 'imovel.add_imovel'
     permission_denied_message = 'Cadastrar imóvel'
     model = Imovel
     form_class = ImovelModelForm
@@ -52,7 +52,7 @@ class ImovelAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = 'Imovel cadastrado com sucesso!'
 
 class ImovelUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
-    permission_required = 'imoveis.update_imovel'
+    permission_required = 'imovel.change_imovel'
     permission_denied_message = 'Editar imóvel'
     model = Imovel
     form_class = ImovelModelForm
@@ -61,7 +61,7 @@ class ImovelUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView)
     success_message = 'Imovel alterado com sucesso!'
 
 class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
-    permission_required = 'imoveis.delete_imovel'
+    permission_required = 'imovel.delete_imovel'
     permission_denied_message = 'Excluir imóvel'
     model = Imovel
     template_name = 'imovel_apagar.html'

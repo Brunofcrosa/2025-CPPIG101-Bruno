@@ -48,8 +48,10 @@
 
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                        {% if perms.imovel.add_imovel %}
                         <a href="{% url 'imovel_adicionar' %}" class="btn btn-primary">Cadastrar</a>
+                        {% endif %}
                         <div class="position-relative">
                             <i
                                 class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
@@ -90,14 +92,18 @@
                                 </div>
                                 <div class="card-footer bg-transparent border-top-0 pt-0 pb-3 text-center">
                                     <div class="btn-group btn-group-sm" role="group">
+                                        {% if perms.imovel.change_imovel %}
                                         <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-outline-primary"
                                             title="Editar">
                                             <i class="bi bi-pencil"></i>
                                         </a>
+                                        {% endif %}
+                                        {% if perms.imovel.delete_imovel %}
                                         <a href="{% url 'imovel_apagar' imovel.pk %}" class="btn btn-outline-danger"
                                             title="Excluir">
                                             <i class="bi bi-trash"></i>
                                         </a>
+                                        {% endif %}
                                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
                                             data-bs-target="#modal{{imovel.id}}">
                                             <i class="bi bi-eye"></i>
@@ -204,7 +210,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                        {% if perms.imovel.change_imovel %}
                                         <a href="{% url 'imovel_editar' imovel.pk %}" class="btn btn-primary">Editar imóvel</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

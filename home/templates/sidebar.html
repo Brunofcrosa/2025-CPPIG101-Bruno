@@ -13,7 +13,8 @@
           <span>Estatísticas</span>
         </a>
       </li>
-  
+
+      {% if perms.imovel.view_imovel %}
       <li class="nav-item mb-1">
         <a href="/imovel" 
           class="nav-link {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -21,7 +22,9 @@
           <span>Imóveis</span>
         </a>
       </li>
-  
+
+      {% endif %}
+      {% if perms.cliente.view_cliente %}
       <li class="nav-item mb-1">
         <a href="/clientes" 
           class="nav-link {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -29,7 +32,9 @@
           <span>Clientes</span>
         </a>
       </li>
-  
+      {% endif %}
+
+      {% if perms.visita.view_visita %}
       <li class="nav-item mb-1">
         <a href="/visitas" 
           class="nav-link {% if request.path|slice:':8  ' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -37,7 +42,9 @@
           <span>Agendamentos</span>
         </a>
       </li>
-  
+      {% endif %}
+
+      {% if perms.corretores.view_corretor %}
       <li class="nav-item mb-1">
         <a href="/corretores" 
           class="nav-link {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -45,7 +52,9 @@
           <span>Corretores</span>
         </a>
       </li>
-  
+      {% endif %}
+
+      {% if perms.proprietarios.view_proprietario %}
       <li class="nav-item mb-1">
         <a href="/proprietarios/" 
           class="nav-link {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -53,7 +62,9 @@
           <span>Proprietários</span>
         </a>
       </li>
-  
+      {% endif %}
+
+      {% if perms.transacao.view_transacao %}
       <li class="nav-item mb-1">
         <a href="/transacao/" 
           class="nav-link {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -61,6 +72,7 @@
           <span>Transações</span>
         </a>
       </li>
+      {% endif %}
     </ul>
   </div>
 {% else %}

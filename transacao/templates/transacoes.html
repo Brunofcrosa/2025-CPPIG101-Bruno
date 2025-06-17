@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center gap-3">
-                            {% if perms.servicos.add_transacoes %}
+                            {% if perms.transacao.add_transacao %}
                             <a href="{% url 'transacao_adicionar' %}" class="btn btn-primary">Cadastrar</a>
                             {% endif %}
                             <div class="position-relative">
@@ -90,12 +90,16 @@
                                         <td>{{ transacao.statusTransacao|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
+                                                {% if perms.transacao.change_transacao %}
                                                 <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-outline-primary" title="Editar">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
+                                                {% endif %}
+                                                {% if perms.transacao.delete_transacao %}
                                                 <a href="{% url 'transacao_apagar' transacao.pk %}" class="btn btn-outline-danger" title="Excluir">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
+                                                {% endif %}
                                                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal{{transacao.id}}">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
@@ -140,7 +144,9 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                    {% if perms.transacao.change_transacao %}
                                                     <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-primary">Editar transacao</a>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

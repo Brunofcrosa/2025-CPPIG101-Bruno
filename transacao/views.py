@@ -37,7 +37,7 @@ class TransacaoAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView)
     success_message = 'transacao cadastrado com sucesso!'
 
 class TransacaoUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
-    permission_required = 'transacao.update_transacao'
+    permission_required = 'transacao.change_transacao'
     permission_denied_message = 'Você não tem permissão para acessar esta página.'
     model = Transacao
     form_class = TransacaoModelForm

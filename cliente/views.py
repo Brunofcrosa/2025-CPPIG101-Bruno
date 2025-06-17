@@ -3,12 +3,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Cliente
 from .forms import ClienteModelForm
 
 class ClientesView(PermissionRequiredMixin, ListView):
-    permission_required = 'clientes.view_cliente'
+    permission_required = 'cliente.view_cliente'
     permission_denied_message = 'Visualizar cliente'
     model = Cliente
     template_name = 'clientes.html'
@@ -28,7 +28,7 @@ class ClientesView(PermissionRequiredMixin, ListView):
             return messages.info(self.request, 'Nenhum cliente encontrado com esse nome')
 
 class ClienteAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
-    permission_required = 'clientes.add_cliente'
+    permission_required = 'cliente.add_cliente'
     permission_denied_message = 'Cadastrar cliente'
     model = Cliente
     form_class = ClienteModelForm
@@ -37,7 +37,7 @@ class ClienteAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = 'Cliente cadastrado com sucesso!'
 
 class ClienteUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
-    permission_required = 'clientes.update_cliente'
+    permission_required = 'cliente.change_cliente'
     permission_denied_message = 'Editar cliente'
     model = Cliente
     form_class = ClienteModelForm
@@ -46,7 +46,7 @@ class ClienteUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView
     success_message = 'Cliente alterado com sucesso!'
 
 class ClienteDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
-    permission_required = 'clientes.delete_cliente'
+    permission_required = 'cliente.delete_cliente'
     permission_denied_message = 'Excluir cliente'
     model = Cliente
     template_name = 'cliente_apagar.html'
