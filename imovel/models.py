@@ -4,7 +4,6 @@ from proprietarios.models import Proprietario
 from transacao.models import Transacao
 from decimal import Decimal
 from django.utils import timezone 
-from visita.models import Visita
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
