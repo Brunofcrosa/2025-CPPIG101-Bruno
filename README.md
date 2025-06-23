@@ -18,7 +18,7 @@ Um imóvel não pode ter mais de uma transação ao mesmo tempo. ✅
 
 O sistema deve aplicar um índice de valorização ao valor de venda de imóveis localizados em regiões específicas, como bairros de luxo ou próximas a universidades. 10% ✅
 
-Separar por perfil de usuário (Corretores) com permissões específicas.
+Separar por perfil de usuário (Corretores) com permissões específicas. ✅
 
 Imóveis sem atualização nos últimos 6 meses devem ser sinalizados como desatualizados.
 
