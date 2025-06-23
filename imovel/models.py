@@ -3,6 +3,8 @@ from stdimage.models import StdImageField
 from proprietarios.models import Proprietario
 from transacao.models import Transacao
 from decimal import Decimal
+from django.utils import timezone 
+from visita.models import Visita
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
@@ -29,9 +31,9 @@ class Imovel(models.Model):
     descricao = models.TextField('Descrição Completa', null=True, blank=True, help_text='Descrição detalhada do imóvel')
 
     tipoImovel = models.CharField('Tipo de Imóvel', max_length=20, choices=[('Casa', 'Casa'), ('Apartamento', 'Apartamento'), ('Terreno', 'Terreno'), ('Comercial', 'Comercial'), ('Outro', 'Outro'),], null=True, blank=True, help_text='Tipo do imóvel (casa, apartamento, etc.)')
-    
+    last_updated = models.DateTimeField('Última Atualização', auto_now=True, help_text='Data e hora da última atualização do imóvel')
 
-    VALORIZACAO_PADRAO = Decimal('1.10')  # 10% de valorização padrão
+    VALORIZACAO_PADRAO = Decimal('1.10')  
 
     zona_valorizacao = models.BooleanField(
         default=False, 
@@ -63,3 +65,10 @@ class Imovel(models.Model):
         if self.zona_valorizacao:
             return self.valorVenda * self.VALORIZACAO_PADRAO
         return self.valorVenda
+    
+    def is_outdated(self):
+        six_months_ago = timezone.now() - timezone.timedelta(days=180) 
+        return self.last_updated < six_months_ago
+    
+    def pendencia_transacao(self):
+        return Transacao.objects.filter(codigoImovel=self, statusTransacao='Pendente').exists()

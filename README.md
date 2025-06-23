@@ -20,9 +20,10 @@ O sistema deve aplicar um índice de valorização ao valor de venda de imóveis
 
 Separar por perfil de usuário (Corretores) com permissões específicas. ✅
 
-Imóveis sem atualização nos últimos 6 meses devem ser sinalizados como desatualizados.
+Imóveis sem atualização nos últimos 6 meses devem ser sinalizados como desatualizados.✅
 
-Não pode alterar o valor de venda de um imóvel com proposta em andamento.
+
+Não pode alterar o valor de venda de um imóvel com proposta em andamento. ✅
 
 Imóveis só podem ser excluídos se não tiver visita ou transação associada.
 

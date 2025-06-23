@@ -14,7 +14,6 @@
                                 <div>
                                     <p class="text-muted-foreground mb-0 small">Total de Imóveis</p>
                                     <p class="h3 fw-bold mb-0">xx</p>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -66,6 +65,9 @@
                         {% for imovel in object_list %}
                         <div class="col">
                             <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                                {% if imovel.is_outdated %}
+                                <div class="position-absolute top-0 end-0 m-2 badge bg-danger">Desatualizado</div>
+                                {% endif %}
                                 {% if imovel.foto %}
                                 <img src="{{ imovel.foto.url }}" class="img-fluid w-100 h-100 object-fit-cover"
                                     alt="Imóvel">
@@ -120,7 +122,7 @@
                                         <h5 class="modal-title" id="modalLabel{{ imovel.id }}">Detalhes do imóvel de código: {{ imovel.codigoImovel }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    
+
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-4 text-center mb-3">
@@ -204,7 +206,11 @@
                                                 <div class="mb-2">
                                                     <p class="mb-0"><strong>Descrição:</strong> {{ imovel.descricao|default:"-" }}</p>
                                                 </div>
-                                                
+
+                                                <div class="mb-2">
+                                                    <p class="mb-0"><strong>Ultima atualização:</strong> {{ imovel.last_updated|date:"d/m/Y" }}</p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -223,6 +229,5 @@
         </main>
     </div>
 </div>
-
 </html>
 {% endblock %}
