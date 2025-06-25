@@ -1,4 +1,4 @@
-REGRAS DE NEGÓCIO
+REGRAS DE NEGÓCIO 
 
 Um imóvel deve estar vinculado a pelo menos um proprietário. ✅
 
