@@ -25,8 +25,8 @@ Imóveis sem atualização nos últimos 6 meses devem ser sinalizados como desat
 
 Não pode alterar o valor de venda de um imóvel com proposta em andamento. ✅
 
-Imóveis só podem ser excluídos se não tiver visita ou transação associada.
+Imóveis só podem ser excluídos se não tiver visita ou transação associada. ✅
 
-Valor de comissão é calculado automaticamente conforme tipo de transação e região.
+Valor de comissão é calculado automaticamente conforme tipo de transação e região. ✅
 
 Corretores são ranqueados mensalmente com base em visitas realizadas, propostas e vendas. 

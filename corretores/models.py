@@ -1,6 +1,9 @@
 from django.db import models
 from pessoa.models import Pessoa
 from stdimage.models import StdImageField
+from django.utils import timezone
+from visita.models import Visita
+from transacao.models import Transacao
 # Create your models here.
 class Corretor(Pessoa):
     codigoCorretor = models.CharField('Código do Corretor', max_length=10, unique=True, help_text='Código único do corretor', default='CORRETOR')
@@ -8,3 +11,4 @@ class Corretor(Pessoa):
 
     def __str__(self):
         return self.nome
+    

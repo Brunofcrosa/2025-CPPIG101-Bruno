@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Imovel
 from .forms import ImovelModelForm
+from django.core.exceptions import ValidationError
+from django.db.models import ProtectedError
 
 class ImovelView(PermissionRequiredMixin, ListView):
     permission_required = 'imovel.view_imovel'
@@ -67,3 +69,16 @@ class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView)
     template_name = 'imovel_apagar.html'
     success_url = reverse_lazy('imovel')
     success_message = 'Imovel excluído com sucesso!'
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            self.object.delete() 
+            messages.success(request, self.success_message)
+            return self.get_success_url() 
+        except ValidationError as e:
+            messages.error(request, e.message)
+            return self.render_to_response(self.get_context_data(object=self.object)) 
+        except ProtectedError:
+            messages.error(request, "Não é possível excluir este imóvel pois há registros relacionados que o impedem.")
+            return self.render_to_response(self.get_context_data(object=self.object)) 

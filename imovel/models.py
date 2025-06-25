@@ -4,6 +4,7 @@ from proprietarios.models import Proprietario
 from transacao.models import Transacao
 from decimal import Decimal
 from django.utils import timezone 
+from django.core.exceptions import ValidationError
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
@@ -71,3 +72,14 @@ class Imovel(models.Model):
     
     def pendencia_transacao(self):
         return Transacao.objects.filter(codigoImovel=self, statusTransacao='Pendente').exists()
+    
+    def delete(self, *args, **kwargs):
+
+        if self.imovel.exists(): 
+            raise ValidationError("Não é possível excluir o imóvel pois existem visitas agendadas ou realizadas associadas a ele.")
+        
+    
+        if self.transacao_set.exists():
+            raise ValidationError("Não é possível excluir o imóvel pois existem transações associadas a ele.")
+        
+        super().delete(*args, **kwargs)

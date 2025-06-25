@@ -3,6 +3,7 @@ from imovel.models import Imovel
 from cliente.models import Cliente
 from corretores.models import Corretor
 from visita.models import Visita
+from django.utils import timezone
 
 class IndexView(TemplateView):
     template_name = 'index.html'
