@@ -8,6 +8,7 @@ from .models import Imovel
 from .forms import ImovelModelForm
 from django.core.exceptions import ValidationError
 from django.db.models import ProtectedError
+from django.utils import timezone 
 
 class ImovelView(PermissionRequiredMixin, ListView):
     permission_required = 'imovel.view_imovel'
@@ -43,6 +44,14 @@ class ImovelView(PermissionRequiredMixin, ListView):
         else:
             return messages.info(self.request, 'Nenhum imovel encontrado com esse nome')
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_imoveis'] = Imovel.objects.count()
+        context['imoveis_disponiveis_locacao'] = Imovel.objects.filter(disponivel_locacao=True).count()
+        
+        six_months_ago = timezone.now() - timezone.timedelta(days=180)
+        context['imoveis_desatualizados'] = Imovel.objects.filter(last_updated__lt=six_months_ago).count()
+        return context
 
 class ImovelAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     permission_required = 'imovel.add_imovel'
@@ -81,4 +90,4 @@ class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView)
             return self.render_to_response(self.get_context_data(object=self.object)) 
         except ProtectedError:
             messages.error(request, "Não é possível excluir este imóvel pois há registros relacionados que o impedem.")
-            return self.render_to_response(self.get_context_data(object=self.object)) 
+            return self.render_to_response(self.get_context_data(object=self.object))

@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Corretor
 from .forms import CorretorModelForm
+from django.utils import timezone 
 
 class CorretoresView(PermissionRequiredMixin, ListView):
     permission_required = 'corretores.view_corretor'
@@ -15,7 +16,7 @@ class CorretoresView(PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
-        qs = super(CorretoresView, self).get_queryset()
+        qs = super().get_queryset()
         
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
@@ -25,7 +26,19 @@ class CorretoresView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            return messages.info(self.request, 'Nenhum corretor encontrado com esse nome')
+            messages.info(self.request, 'Nenhum corretor encontrado com esse nome')
+            return Corretor.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_month = timezone.now().month
+        current_year = timezone.now().year
+
+        context['total_corretores'] = Corretor.objects.count()
+        context['corretores_ativos'] = Corretor.objects.count() 
+        context['novos_corretores_mes'] = 0
+
+        return context
 
 class CorretorAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     permission_required = 'corretores.add_corretor'

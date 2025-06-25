@@ -6,37 +6,37 @@
             <main class="col-md-9 mx-auto col-lg-12 p-3">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="row g-4">
-                            <div class="col-md-4">
+                        <div class="row g-4 justify-content-start">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-purple rounded-circle">
                                         <i class="bi bi-person text-icon-purple fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">Total de visita</p>
+                                        <p class="text-muted-foreground mb-0 small">Total de Visitas</p>
                                         <p class="h3 fw-bold mb-0">{{ total_visita }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-green rounded-circle">
                                         <i class="bi bi-person text-icon-green fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
-                                        <p class="h3 fw-bold mb-0">XX</p>
+                                        <p class="text-muted-foreground mb-0 small">Visitas Agendadas (Mês)</p>
+                                        <p class="h3 fw-bold mb-0">{{ visitas_agendadas_mes }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-red rounded-circle">
                                         <i class="bi bi-person text-icon-red fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
-                                        <p class="h3 fw-bold mb-0">XX</p>
+                                        <p class="text-muted-foreground mb-0 small">Visitas Concluídas (Mês)</p>
+                                        <p class="h3 fw-bold mb-0">{{ visitas_concluidas_mes }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -45,15 +45,17 @@
                 </div>
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-3 flex-grow-1"> {# Removida a classe flex-wrap #}
                             {% if perms.visita.add_visita %}
                             <a href="{% url 'visita_adicionar' %}" class="btn btn-primary">Cadastrar</a>
                             {% endif %}
-                            <div class="position-relative">
-                                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                                <input type="text" class="form-control ps-5" placeholder="Buscar visita..." style="width: 790px;" value="{{ request.GET.buscar }}">
-                            </div>
-                            <a href="#" class="btn btn-primary">Buscar</a>
+                            <form method="GET" class="d-flex align-items-center gap-3 flex-grow-1 w-100"> {# Adicionado w-100, removido flex-wrap #}
+                                <div class="position-relative flex-grow-1" style="min-width: 200px;">
+                                    <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                    <input type="text" name="buscar" class="form-control ps-5" placeholder="Buscar visita..." value="{{ request.GET.buscar }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body">
@@ -62,8 +64,8 @@
                                 <thead class="table-light text-center">
                                     <tr>
                                         <th>Cliente</th>
-                                        <th>Nome</th>
                                         <th>Imóvel</th>
+                                        <th>Corretor</th>
                                         <th>Data</th>
                                         <th>Ações</th>
                                     </tr>
@@ -72,17 +74,17 @@
                                     {% for visita in object_list %}
                                     <tr>
                                         <td>
-                                            {% if visita.foto %}
-                                            <img src="{{ visita.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do visita"/>
+                                            {% if visita.cliente.foto %}
+                                            <img src="{{ visita.cliente.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do cliente"/>
                                             {% else %}
                                             <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
                                                 <i class="bi bi-person text-muted fs-5"></i>
                                             </div>
                                             {% endif %}
                                         </td>
-                                        <td class="fw-bold">{{ visita.cliente }}</td>
-                                        <td>{{ visita.imovel|default:"-" }}</td>
-                                        <td>{{ visita.data|default:"-" }}</td>
+                                        <td class="fw-bold">{{ visita.cliente.nome }}</td>
+                                        <td>{{ visita.imovel.nome|default:"-" }}</td>
+                                        <td>{{ visita.data|date:"d/m/Y"|default:"-" }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 {% if perms.visita.change_visita %}
@@ -101,20 +103,19 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Modal -->
                                     <div class="modal fade" id="modal{{ visita.id }}" tabindex="-1" aria-labelledby="modalLabel{{ visita.id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalLabel{{ visita.id }}">Detalhes do visita</h5>
+                                                    <h5 class="modal-title" id="modalLabel{{ visita.id }}">Detalhes do Agendamento</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-md-4 text-center mb-3">
-                                                            {% if visita.foto %}
-                                                            <img src="{{ visita.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do visita"/>
+                                                            {% if visita.cliente.foto %}
+                                                            <img src="{{ visita.cliente.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do cliente"/>
                                                             {% else %}
                                                             <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
                                                                 <i class="bi bi-person text-muted fs-1"></i>
@@ -122,17 +123,25 @@
                                                             {% endif %}
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="fw-bold">{{ visita.endereco }}</h6>
-                                                            <p class="text-muted mb-2">{{ visita.get_tipo_display }}</p>
+                                                            <h6 class="fw-bold">Cliente: {{ visita.cliente.nome }}</h6>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Último Contato:</strong> {{ visita.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                                <p class="mb-0"><strong>Imóvel:</strong> {{ visita.imovel.nome }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Corretor:</strong> {{ visita.corretor.nome }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Data:</strong> {{ visita.data|date:"d/m/Y" }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Código da Visita:</strong> {{ visita.codigoVisita }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                                    {% if perms.visita.changes_visita %}
+                                                    {% if perms.visita.change_visita %}
                                                     <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-primary">Editar Visita</a>
                                                     {% endif %}
                                                 </div>
@@ -150,4 +159,4 @@
     </div>
 </body>
 </html>
-{% endblock %}
+{% endblock content %}

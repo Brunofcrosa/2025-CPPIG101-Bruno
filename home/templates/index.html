@@ -1,4 +1,5 @@
 {% extends "principal.html" %}
+{% load static %}
 {% block content %}
 <div class="container-fluid px-4 pt-3 bg-light">
   <div class="row g-3 mb-4">
@@ -57,7 +58,7 @@
             <h6 class="card-title mb-0">Vendas</h6>
             <i class="bi bi-currency-dollar fs-4 text-danger"></i>
           </div>
-          <h3 class="card-text mb-1">XX</h3>
+          <h3 class="card-text mb-1">{{ total_vendas_mes }}</h3>
           <small class="text-muted">Este mês</small>
         </div>
       </div>
@@ -69,7 +70,7 @@
             <h6 class="card-title mb-0">Faturamento</h6>
             <i class="bi bi-graph-up fs-4 text-purple"></i>
           </div>
-          <h3 class="card-text mb-1">R$ XX</h3>
+          <h3 class="card-text mb-1">R$ {{ faturamento_mensal|floatformat:2 }}</h3>
           <small class="text-muted">Mensal</small>
         </div>
       </div>
@@ -82,7 +83,7 @@
         <div class="card-header bg-white border-bottom-0 pb-0">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-2">Imóveis adicionados recentemente</h5>
-            <a href="#" class="btn btn-sm btn-outline-primary mb-2">Ver todos</a>
+            <a href="{% url 'imovel' %}" class="btn btn-sm btn-outline-primary mb-2">Ver todos</a>
           </div>
         </div>
         <div class="card-body pt-2">
@@ -95,20 +96,20 @@
                   <img src="{{ imovel.foto.url }}" class="card-img-top" alt="Imóvel"
                     style="height: 180px; object-fit: cover;">
                   {% else %}
-                  <img src="/static/img/casa1.jpeg" class="card-img-top" alt="Imóvel"
+                  <img src="{% static 'img/casa1.jpeg' %}" class="card-img-top" alt="Imóvel"
                     style="height: 180px; object-fit: cover;">
                   {% endif %}
                 </div>
                 <div class="card-body">
-                  <small class="text-muted">{{imovel.codigoImovel}}</small>
+                  <small class="text-muted">Código: {{imovel.codigoImovel}}</small>
                   <h5 class="card-title mt-1">{{imovel.nome}}</h5>
                   <p class="card-text text-muted mb-2">{{imovel.endereco}}</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">R$ XX</span>
+                    <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|floatformat:2|default:"0.00" }}</span>
                     <div class="text-muted small">
-                      <i class="bi bi-door-open"></i> x
-                      <i class="bi bi-droplet ms-2"></i> x
-                      <i class="bi bi-arrows-angle-contract ms-2"></i> XXXm²
+                      <i class="bi bi-door-open"></i> {{ imovel.numQuartos|default:"-" }}
+                      <i class="bi bi-droplet ms-2"></i> {{ imovel.numBanheiros|default:"-" }}
+                      <i class="bi bi-arrows-angle-contract ms-2"></i> {{ imovel.areaTotal|default:"-" }}m²
                     </div>
                   </div>
                 </div>
@@ -125,7 +126,7 @@
         <div class="card-header bg-white border-bottom-0 pb-2">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">Visitas Agendadas</h5>
-            <a href="#" class="btn btn-sm btn-outline-primary">Ver todas</a>
+            <a href="{% url 'visita' %}" class="btn btn-sm btn-outline-primary">Ver todas</a>
           </div>
         </div>
         <div class="card-body pt-2">
@@ -137,17 +138,17 @@
               </div>
               <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-start">
-                  <h6 class="mb-1">Imovel: {{visita.imovel}}</h6>
-                  <span class="badge bg-warning bg-opacity-20 text-white">Agendada</span>
+                  <h6 class="mb-1">Imovel: {{visita.imovel.nome}}</h6>
+                  <span class="badge bg-warning bg-opacity-20 text-warning">Agendada</span>
                 </div>
                 <small class="text-muted d-block">
-                  <i class="bi bi-clock me-1"></i> XXX/XX/2023 às XX:XX
+                  <i class="bi bi-clock me-1"></i> {{ visita.data|date:"d/m/Y" }}
                 </small>
                 <small class="text-muted">
-                  <i class="bi bi-person me-1"></i> Corretor: {{visita.corretor}}
+                  <i class="bi bi-person me-1"></i> Corretor: {{visita.corretor.nome}}
                 </small>
                 <div class="mt-2">
-                  <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                  <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-sm btn-outline-secondary">Detalhes</a>
                 </div>
               </div>
             </div>
@@ -164,7 +165,7 @@
         <div class="card-header bg-white border-bottom-0 pb-0">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">Transações Recentes</h5>
-            <a href="#" class="btn btn-sm btn-outline-primary">Ver todas</a>
+            <a href="{% url 'transacao' %}" class="btn btn-sm btn-outline-primary">Ver todas</a>
           </div>
         </div>
         <div class="card-body pt-2">
@@ -182,106 +183,38 @@
                 </tr>
               </thead>
               <tbody>
+                {% for transacao in transacoes_recentes %}
                 <tr>
-                  <td>XXXXX</td>
+                  <td>{{ transacao.codigoTransacao }}</td>
                   <td>
                     <div class="d-flex flex-column">
-                      <span class="fw-medium">XX-XXX</span>
-                      <small class="text-muted">XXXX</small>
+                      <span class="fw-medium">{{ transacao.codigoImovel.codigoImovel }}</span>
+                      <small class="text-muted">{{ transacao.codigoImovel.nome }}</small>
                     </div>
                   </td>
-                  <td>XXX XXX</td>
-                  <td>R$ XXXXXXX</td>
-                  <td>XX/XX/XXXX</td>
+                  <td>{{ transacao.codigoCliente.nome }}</td>
+                  <td>R$ {{ transacao.valorVenda|floatformat:2 }}</td>
+                  <td>{{ transacao.dataTransacao|date:"d/m/Y" }}</td>
                   <td>
+                    {% if transacao.statusTransacao == 'Concluída' %}
                     <span class="badge bg-success bg-opacity-10 text-success">Concluída</span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-secondary">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>XXXXX</td>
-                  <td>
-                    <div class="d-flex flex-column">
-                      <span class="fw-medium">XX-XXX</span>
-                      <small class="text-muted">XXXX</small>
-                    </div>
-                  </td>
-                  <td>XXX XXX</td>
-                  <td>R$ XXXXXXX</td>
-                  <td>XX/XX/XXXX</td>
-                  <td>
-                    <span class="badge bg-success bg-opacity-10 text-success">Concluída</span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-secondary">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>XXXXX</td>
-                  <td>
-                    <div class="d-flex flex-column">
-                      <span class="fw-medium">XX-XXX</span>
-                      <small class="text-muted">XXXX</small>
-                    </div>
-                  </td>
-                  <td>XXX XXX</td>
-                  <td>R$ XXXXXXX</td>
-                  <td>XX/XX/XXXX</td>
-                  <td>
+                    {% elif transacao.statusTransacao == 'Pendente' %}
                     <span class="badge bg-warning bg-opacity-10 text-warning">Pendente</span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-secondary">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>XXXXX</td>
-                  <td>
-                    <div class="d-flex flex-column">
-                      <span class="fw-medium">XX-XXX</span>
-                      <small class="text-muted">XXXX</small>
-                    </div>
-                  </td>
-                  <td>XXX XXX</td>
-                  <td>R$ XXXXXXX</td>
-                  <td>XX/XX/XXXX</td>
-                  <td>
+                    {% elif transacao.statusTransacao == 'Cancelada' %}
                     <span class="badge bg-danger bg-opacity-10 text-danger">Cancelada</span>
+                    {% endif %}
                   </td>
                   <td>
-                    <button class="btn btn-sm btn-outline-secondary">
+                    <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-sm btn-outline-secondary">
                       <i class="bi bi-eye"></i>
-                    </button>
+                    </a>
                   </td>
                 </tr>
+                {% empty %}
                 <tr>
-                  <td>XXXXX</td>
-                  <td>
-                    <div class="d-flex flex-column">
-                      <span class="fw-medium">XX-XXX</span>
-                      <small class="text-muted">XXXX</small>
-                    </div>
-                  </td>
-                  <td>XXX XXX</td>
-                  <td>R$ XXXXXXX</td>
-                  <td>XX/XX/XXXX</td>
-                  <td>
-                    <span class="badge bg-success bg-opacity-10 text-success">Concluída</span>
-                  </td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-secondary">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
+                  <td colspan="7">Nenhuma transação recente encontrada.</td>
                 </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -295,24 +228,32 @@
         </div>
         <div class="card-body pt-4">
           <div class="text-center">
-            <img src="/static/img/casa1.jpeg" class="rounded-circle mb-3" width="220" alt="Corretor">
-            <h4>XXXXXX</h4>
-            <p class="text-muted">Código: XXXXXX</p>
+            {% if corretor_destaque %}
+            {% if corretor_destaque.foto %}
+            <img src="{{ corretor_destaque.foto.url }}" class="rounded-circle mb-3" width="220" alt="Corretor">
+            {% else %}
+            <img src="{% static 'img/corretor_placeholder.jpeg' %}" class="rounded-circle mb-3" width="220" alt="Corretor">
+            {% endif %}
+            <h4>{{ corretor_destaque.nome }}</h4>
+            <p class="text-muted">Código: {{ corretor_destaque.codigoCorretor }}</p>
 
             <div class="d-flex justify-content-between mb-3">
               <div class="text-center">
-                <h5 class="mb-0">XX</h5>
+                <h5 class="mb-0">{{ corretor_destaque_dados.vendas_mes }}</h5>
                 <small class="text-muted">Vendas no mês</small>
               </div>
               <div class="text-center">
-                <h5 class="mb-0">R$ XX</h5>
+                <h5 class="mb-0">R$ {{ corretor_destaque_dados.faturado_mes|floatformat:2 }}</h5>
                 <small class="text-muted">Faturado</small>
               </div>
               <div class="text-center">
-                <h5 class="mb-0">XX</h5>
+                <h5 class="mb-0">{{ corretor_destaque_dados.vendas_total }}</h5>
                 <small class="text-muted">Vendas no total</small>
               </div>
             </div>
+            {% else %}
+            <p>Nenhum corretor em destaque no momento.</p>
+            {% endif %}
           </div>
         </div>
       </div>

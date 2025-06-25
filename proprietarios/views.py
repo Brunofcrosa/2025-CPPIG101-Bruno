@@ -1,3 +1,4 @@
+# 2025-CPPIG101-Bruno/proprietarios/views.py
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
@@ -6,6 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Proprietario
 from .forms import ProprietarioModelForm
+from django.utils import timezone # Importar timezone para cálculos de data
 
 class ProprietariosView(PermissionRequiredMixin, ListView):
     permission_required = 'proprietarios.view_proprietario'
@@ -15,7 +17,7 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
-        qs = super(ProprietariosView, self).get_queryset()
+        qs = super().get_queryset()
         
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
@@ -25,7 +27,20 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            return messages.info(self.request, 'Nenhum Proprietario encontrado com esse nome')
+            messages.info(self.request, 'Nenhum Proprietario encontrado com esse nome')
+            return Proprietario.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_month = timezone.now().month
+        current_year = timezone.now().year
+
+        context['total_proprietarios'] = Proprietario.objects.count()
+        context['proprietarios_ativos'] = Proprietario.objects.count() # Considerando todos os proprietários como ativos, pois não há campo de status.
+        # Para um cálculo preciso de "novos proprietários (mês)", seria necessário um campo 'data_cadastro' no modelo Pessoa.
+        context['novos_proprietarios_mes'] = 0 
+        
+        return context
 
 class ProprietarioAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     permission_required = 'proprietarios.add_proprietario'

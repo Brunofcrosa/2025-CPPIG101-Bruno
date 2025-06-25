@@ -15,7 +15,7 @@ class ClientesView(PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         buscar = self.request.GET.get('buscar')
-        qs = super(ClientesView, self).get_queryset()
+        qs = super().get_queryset()
         
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
@@ -25,7 +25,13 @@ class ClientesView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            return messages.info(self.request, 'Nenhum cliente encontrado com esse nome')
+            messages.info(self.request, 'Nenhum cliente encontrado com esse nome')
+            return Cliente.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_clientes'] = Cliente.objects.count()
+        return context
 
 class ClienteAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     permission_required = 'cliente.add_cliente'

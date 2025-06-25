@@ -5,37 +5,37 @@
             <main class="col-md-9 col-lg-12 p-3">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="row g-4">
-                            <div class="col-md-4">
+                        <div class="row g-4 justify-content-start">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-purple rounded-circle">
                                         <i class="bi bi-person text-icon-purple fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">Total de transações</p>
+                                        <p class="text-muted-foreground mb-0 small">Total de Transações</p>
                                         <p class="h3 fw-bold mb-0">{{ total_transacoes }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-green rounded-circle">
                                         <i class="bi bi-person text-icon-green fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
-                                        <p class="h3 fw-bold mb-0">XX</p>
+                                        <p class="text-muted-foreground mb-0 small">Transações Concluídas</p>
+                                        <p class="h3 fw-bold mb-0">{{ transacoes_concluidas }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-auto">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="p-2 bg-icon-red rounded-circle">
                                         <i class="bi bi-person text-icon-red fs-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-muted-foreground mb-0 small">XXXXX</p>
-                                        <p class="h3 fw-bold mb-0">XX</p>
+                                        <p class="text-muted-foreground mb-0 small">Transações Pendentes</p>
+                                        <p class="h3 fw-bold mb-0">{{ transacoes_pendentes }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -44,15 +44,17 @@
                 </div>
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-3 flex-grow-1"> {# Removida a classe flex-wrap #}
                             {% if perms.transacao.add_transacao %}
                             <a href="{% url 'transacao_adicionar' %}" class="btn btn-primary">Cadastrar</a>
                             {% endif %}
-                            <div class="position-relative">
-                                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-                                <input type="text" class="form-control ps-5" placeholder="Buscar transações..." style="width: 790px;" value="{{ request.GET.buscar }}">
-                            </div>
-                            <a href="#" class="btn btn-primary">Buscar</a>
+                            <form method="GET" class="d-flex align-items-center gap-3 flex-grow-1 w-100"> {# Adicionado w-100, removido flex-wrap #}
+                                <div class="position-relative flex-grow-1" style="min-width: 200px;">
+                                    <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                    <input type="text" name="buscar" class="form-control ps-5" placeholder="Buscar transações..." value="{{ request.GET.buscar }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
                         </div>
                         
                     </div>
@@ -63,7 +65,7 @@
                                 <thead class="table-light text-center">
                                     <tr>
                                         <th>Cliente</th>
-                                        <th>Imovel</th>
+                                        <th>Imóvel</th>
                                         <th>Corretor</th>
                                         <th>Tipo</th>
                                         <th>Data</th>
@@ -75,8 +77,9 @@
                                     {% for transacao in object_list %}
                                     <tr>
                                         <td>
-                                            {% if transacao.foto %}
-                                            <img src="{{ transacao.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do transacao"/>
+                                            {% comment %} A Transacao não tem campo foto. Isso deve ser ajustado para exibir a foto do cliente ou do imóvel. {% endcomment %}
+                                            {% if transacao.codigoCliente.foto %}
+                                            <img src="{{ transacao.codigoCliente.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do cliente"/>
                                             {% else %}
                                             <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
                                                 <i class="bi bi-person text-muted fs-5"></i>
@@ -106,20 +109,20 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Modal -->
                                     <div class="modal fade" id="modal{{ transacao.id }}" tabindex="-1" aria-labelledby="modalLabel{{ transacao.id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalLabel{{ transacao.id }}">Detalhes do transacao</h5>
+                                                    <h5 class="modal-title" id="modalLabel{{ transacao.id }}">Detalhes da Transação</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-md-4 text-center mb-3">
-                                                            {% if transacao.foto %}
-                                                            <img src="{{ transacao.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do transacao"/>
+                                                            {% comment %} A Transacao não tem campo foto. Isso deve ser ajustado para exibir a foto do cliente ou do imóvel. {% endcomment %}
+                                                            {% if transacao.codigoCliente.foto %}
+                                                            <img src="{{ transacao.codigoCliente.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do cliente"/>
                                                             {% else %}
                                                             <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
                                                                 <i class="bi bi-person text-muted fs-1"></i>
@@ -127,17 +130,30 @@
                                                             {% endif %}
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <h6 class="fw-bold">{{ transacao.nome }}</h6>
-                                                            <p class="text-muted mb-2">{{ transacao.get_tipo_display }}</p>
-                                                            
+                                                            <h6 class="fw-bold">Transação: {{ transacao.codigoTransacao }}</h6>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Email:</strong> {{ transacao.email|default:"-" }}</p>
+                                                                <p class="mb-0"><strong>Imóvel:</strong> {{ transacao.codigoImovel.nome }}</p>
                                                             </div>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Telefone:</strong> {{ transacao.telefone|default:"-" }}</p>
+                                                                <p class="mb-0"><strong>Corretor:</strong> {{ transacao.codigoCorretor.nome }}</p>
                                                             </div>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Último Contato:</strong> {{ transacao.ultimo_contato|date:"d/m/Y H:i"|default:"Nenhum contato registrado" }}</p>
+                                                                <p class="mb-0"><strong>Cliente:</strong> {{ transacao.codigoCliente.nome }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Tipo de Transação:</strong> {{ transacao.tipoTransacao }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Data da Transação:</strong> {{ transacao.dataTransacao|date:"d/m/Y" }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Status da Transação:</strong> {{ transacao.statusTransacao }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Valor de Venda:</strong> R$ {{ transacao.valorVenda|default:"-" }}</p>
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <p class="mb-0"><strong>Valor da Comissão:</strong> R$ {{ transacao.valorComissao|default:"-" }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -145,7 +161,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                                                     {% if perms.transacao.change_transacao %}
-                                                    <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-primary">Editar transacao</a>
+                                                    <a href="{% url 'transacao_editar' transacao.pk %}" class="btn btn-primary">Editar Transação</a>
                                                     {% endif %}
                                                 </div>
                                             </div>
