@@ -1,4 +1,3 @@
-# 2025-CPPIG101-Bruno/proprietarios/views.py
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
@@ -7,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Proprietario
 from .forms import ProprietarioModelForm
-from django.utils import timezone # Importar timezone para cálculos de data
+from django.utils import timezone
 
 class ProprietariosView(PermissionRequiredMixin, ListView):
     permission_required = 'proprietarios.view_proprietario'
@@ -36,8 +35,7 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
         current_year = timezone.now().year
 
         context['total_proprietarios'] = Proprietario.objects.count()
-        context['proprietarios_ativos'] = Proprietario.objects.count() # Considerando todos os proprietários como ativos, pois não há campo de status.
-        # Para um cálculo preciso de "novos proprietários (mês)", seria necessário um campo 'data_cadastro' no modelo Pessoa.
+        context['proprietarios_ativos'] = Proprietario.objects.count()
         context['novos_proprietarios_mes'] = 0 
         
         return context

@@ -1,4 +1,3 @@
-# 2025-CPPIG101-Bruno/transacao/views.py
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator

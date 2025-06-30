@@ -1,4 +1,3 @@
-# 2025-CPPIG101-Bruno/home/views.py
 from django.views.generic import TemplateView
 from imovel.models import Imovel
 from cliente.models import Cliente
