@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Visita
 from .forms import VisitaModelForm
-from django.utils import timezone # Importar timezone
+from django.utils import timezone 
 
 class VisitaView(PermissionRequiredMixin, ListView):
     permission_required = 'visita.view_visita'
@@ -39,8 +39,6 @@ class VisitaView(PermissionRequiredMixin, ListView):
             data__month=current_month,
             data__year=current_year
         ).count()
-        # O modelo Visita não possui um campo de status para determinar "Visitas Concluídas".
-        # Para um cálculo preciso, seria necessário adicionar um campo 'status' ao modelo Visita.
         context['visitas_concluidas_mes'] = 0 
         return context
 

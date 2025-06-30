@@ -47,17 +47,16 @@
 
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-3 flex-grow-1"> {# Ajuste: removido gap-2 e adicionado flex-grow-1 para o container principal de ações #}
+                    <div class="d-flex align-items-center gap-3 flex-grow-1">
                         {% if perms.imovel.add_imovel %}
                         <a href="{% url 'imovel_adicionar' %}" class="btn btn-primary">Cadastrar</a>
                         {% endif %}
-                        {# Bloco de busca reestruturado como um formulário GET #}
-                        <form method="GET" class="d-flex align-items-center gap-3 flex-grow-1 w-100"> {# Adicionado flex-grow-1 e w-100 #}
-                            <div class="position-relative flex-grow-1" style="min-width: 200px;"> {# Removido style="width: 790px;" do input #}
+                        <form method="GET" class="d-flex align-items-center gap-3 flex-grow-1 w-100">
+                            <div class="position-relative flex-grow-1" style="min-width: 200px;">
                                 <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
                                 <input type="text" name="buscar" class="form-control ps-5" placeholder="Buscar imóveis..." value="{{ request.GET.buscar }}">
                             </div>
-                            <button type="submit" class="btn btn-primary">Buscar</button> {# Alterado de <a> para <button type="submit"> #}
+                            <button type="submit" class="btn btn-primary">Buscar</button>
                         </form>
                     </div>
                 </div>
