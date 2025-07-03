@@ -9,31 +9,20 @@ class Proprietario(Pessoa):
         return self.nome
 
     def save(self, *args, **kwargs):
-        if not self.codigoProprietario:
-            nome_modelo = self.__class__.__name__
-            prefixo = nome_modelo[0:2].upper()
-            sufixo = nome_modelo[-2:].upper()
-
-            padrao = re.compile(rf"^{prefixo}(\d+){sufixo}$")
-            
-            ultimo_numero_sequencial = 99
-            
-            todos_os_codigos_do_modelo = self.__class__.objects.filter(
-                codigoProprietario__startswith=prefixo,
-                codigoProprietario__endswith=sufixo
-            ).values_list('codigoProprietario', flat=True)
-
-            for codigo in todos_os_codigos_do_modelo:
-                correspondencia = padrao.match(codigo)
-                if correspondencia:
-                    try:
-                        numero_atual = int(correspondencia.group(1))
-                        if numero_atual > ultimo_numero_sequencial:
-                            ultimo_numero_sequencial = numero_atual
-                    except ValueError:
-                        pass
-            
-            proximo_numero_sequencial = ultimo_numero_sequencial + 1
-            self.codigoProprietario = f"{prefixo}{proximo_numero_sequencial:03d}{sufixo}"
+        if not self.codigoProprietario:  
         
-        super().save(*args, **kwargs)
+            iniciais = self.__class__.__name__[:2].upper()  
+            finais = self.__class__.__name__[-2:].upper()   
+        
+        
+            ultimo_proprietario = Proprietario.objects.order_by('-codigoProprietario').first()
+        
+            if ultimo_proprietario:  
+                numero = int(ultimo_proprietario.codigoProprietario[2:-2]) + 1
+            else:  
+                numero = 1
+            
+        
+            self.codigoProprietario = f"{iniciais}{numero:03d}{finais}"
+    
+        super().save(*args, **kwargs)  

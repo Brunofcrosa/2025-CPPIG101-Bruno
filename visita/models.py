@@ -13,35 +13,24 @@ class Visita(models.Model):
 
     class Meta:
         permissions = (('fechar_agendamento', 'Permite fazer o fechamento de uma visita'),)
-        verbose_name = 'Cliente'
-        verbose_name_plural = 'Clientes'
+        verbose_name = 'Visita'
+        verbose_name_plural = 'Visitas'
 
     def save(self, *args, **kwargs):
-        if not self.codigoVisita:
-            nome_modelo = self.__class__.__name__
-            prefixo = nome_modelo[0:2].upper()
-            sufixo = nome_modelo[-2:].upper()
-
-            padrao = re.compile(rf"^{prefixo}(\d+){sufixo}$")
-            
-            ultimo_numero_sequencial = 99
-            
-            todos_os_codigos_do_modelo = self.__class__.objects.filter(
-                codigoVisita__startswith=prefixo,
-                codigoVisita__endswith=sufixo
-            ).values_list('codigoVisita', flat=True)
-
-            for codigo in todos_os_codigos_do_modelo:
-                correspondencia = padrao.match(codigo)
-                if correspondencia:
-                    try:
-                        numero_atual = int(correspondencia.group(1))
-                        if numero_atual > ultimo_numero_sequencial:
-                            ultimo_numero_sequencial = numero_atual
-                    except ValueError:
-                        pass
-            
-            proximo_numero_sequencial = ultimo_numero_sequencial + 1
-            self.codigoVisita = f"{prefixo}{proximo_numero_sequencial:03d}{sufixo}"
+        if not self.codigoVisita:  
         
-        super().save(*args, **kwargs)
+            iniciais = self.__class__.__name__[:2].upper()  
+            finais = self.__class__.__name__[-2:].upper()   
+        
+        
+            ultima_visita = Visita.objects.order_by('-codigoVisita').first()
+        
+            if ultima_visita:  
+                numero = int(ultima_visita.codigoVisita[2:-2]) + 1
+            else:  
+                numero = 1
+            
+        
+            self.codigoVisita = f"{iniciais}{numero:03d}{finais}"
+    
+        super().save(*args, **kwargs)  

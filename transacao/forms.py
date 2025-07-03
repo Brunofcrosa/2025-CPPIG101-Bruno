@@ -7,13 +7,10 @@ from django.utils import timezone
 class TransacaoModelForm(forms.ModelForm):
     class Meta:
         model = Transacao
-        fields = ['codigoTransacao', 'codigoImovel', 'codigoCorretor', 'codigoCliente', 'tipoTransacao', 'dataTransacao', 'statusTransacao', 'valorVenda']
+        fields = ['codigoImovel', 'codigoCorretor', 'codigoCliente', 'tipoTransacao', 'dataTransacao', 'statusTransacao', 'valorVenda']
         
         error_messages = {
-            'codigoTransacao' : {
-                'required': 'O campo Código da Transação é obrigatório.',
-                'unique': 'Já existe uma transação com este código.',
-            }
+          
         }
     
     def clean(self):

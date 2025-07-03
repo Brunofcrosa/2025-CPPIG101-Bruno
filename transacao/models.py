@@ -22,32 +22,21 @@ class Transacao(models.Model):
         return f"Transação {self.codigoTransacao}"
     
     def save(self, *args, **kwargs):
-        if not self.codigoTransacao:
-            nome_modelo = self.__class__.__name__
-            prefixo = nome_modelo[0:2].upper()
-            sufixo = nome_modelo[-2:].upper()
-
-            padrao = re.compile(rf"^{prefixo}(\d+){sufixo}$")
+        if not self.codigoTransacao:  
+        
+            iniciais = self.__class__.__name__[:2].upper()  
+            finais = self.__class__.__name__[-2:].upper()   
+        
+        
+            ultima_transacao = Transacao.objects.order_by('-codigoTransacao').first()
+        
+            if ultima_transacao:  
+                numero = int(ultima_transacao.codigoTransacao[2:-2]) + 1
+            else:  
+                numero = 1
             
-            ultimo_numero_sequencial = 99
-            
-            todos_os_codigos_do_modelo = self.__class__.objects.filter(
-                codigoTransacao__startswith=prefixo,
-                codigoTransacao__endswith=sufixo
-            ).values_list('codigoTransacao', flat=True)
-
-            for codigo in todos_os_codigos_do_modelo:
-                correspondencia = padrao.match(codigo)
-                if correspondencia:
-                    try:
-                        numero_atual = int(correspondencia.group(1))
-                        if numero_atual > ultimo_numero_sequencial:
-                            ultimo_numero_sequencial = numero_atual
-                    except ValueError:
-                        pass
-            
-            proximo_numero_sequencial = ultimo_numero_sequencial + 1
-            self.codigoTransacao = f"{prefixo}{proximo_numero_sequencial:03d}{sufixo}"
+        
+            self.codigoTransacao = f"{iniciais}{numero:03d}{finais}"
 
 
         TAXA_VENDA_NORMAL = Decimal('0.05')  
@@ -68,3 +57,6 @@ class Transacao(models.Model):
                     self.valorComissao = self.valorVenda * TAXA_ALUGUEL_NORMAL
         
         super().save(*args, **kwargs)
+
+
+        
