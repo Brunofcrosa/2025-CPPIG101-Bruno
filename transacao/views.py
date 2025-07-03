@@ -27,7 +27,7 @@ class TransacoesView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            messages.info(self.request, 'Nenhuma transação encontrada com esse critério')
+            messages.info(self.request, 'Nenhuma transação encontrada!')
             return Transacao.objects.none()
 
     def get_context_data(self, **kwargs):

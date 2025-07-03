@@ -11,32 +11,40 @@ class Imovel(models.Model):
     nome = models.CharField(max_length=100)  
     codigoImovel = models.CharField('Código do Imóvel', max_length=10, unique=True, help_text='Código único do imóvel') 
     foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)  
-    endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
-    proprietario = models.ManyToManyField(Proprietario, verbose_name='Proprietário', help_text='Selecione o proprietário do imóvel')
-    disponivel_locacao = models.BooleanField('Disponível para Locação', default=True, help_text='Indica se o imóvel está disponível para locação')
+    rua = models.CharField('Rua', max_length=100, help_text='Nome da rua do imóvel', null=True, blank=True)
+    bairro = models.CharField('Bairro', max_length=100, help_text='Bairro onde o imóvel está localizado', null=True, blank=True)
+    cidade = models.CharField('Cidade', max_length=100, help_text='Cidade onde o imóvel está localizado', null=True, blank=True)
+    estado = models.CharField('Estado', max_length=100, help_text='Estado onde o imóvel está localizado', null=True, blank=True)
+    cep = models.CharField('CEP', max_length=10, help_text='Código Postal do imóvel', null=True, blank=True)
+    numero = models.CharField('Número', max_length=10, help_text='Número do imóvel no endereço', null=True, blank=True)
+    complemento = models.CharField('Complemento', max_length=50, null=True, blank=True, help_text='Complemento do endereço (ex: apartamento, bloco)')
 
-    valorVenda = models.DecimalField('Valor de Venda', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Valor do imóvel para venda')
-    valorIPTU = models.DecimalField('Valor IPTU', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Valor anual do IPTU')
-    valorCondominio = models.DecimalField('Valor do Condomínio', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Valor mensal do condomínio')
+    proprietario = models.ManyToManyField(Proprietario, verbose_name='Proprietário',)
+    disponivel_locacao = models.BooleanField('Disponível para Locação', default=True, )
+
+    valorVenda = models.DecimalField('Valor de Venda', max_digits=10, decimal_places=2, null=True, blank=True )
+    valorIPTU = models.DecimalField('Valor IPTU', max_digits=10, decimal_places=2, null=True, blank=True)
+    valorCondominio = models.DecimalField('Valor do Condomínio', max_digits=10, decimal_places=2, null=True, blank=True )
     
-    areaTotal = models.DecimalField('Área Total (m²)', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Área total do imóvel em metros quadrados')
-    areaPrivativa = models.DecimalField('Área Privativa (m²)', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Área privativa do imóvel em metros quadrados')
-    areaUtil = models.DecimalField('Área Útil (m²)', max_digits=10, decimal_places=2, null=True, blank=True, help_text='Área útil do imóvel em metros quadrados')
+    areaTotal = models.DecimalField('Área Total (m²)', max_digits=10, decimal_places=2, null=True, blank=True)
+    areaPrivativa = models.DecimalField('Área Privativa (m²)', max_digits=10, decimal_places=2, null=True, blank=True)
+    areaUtil = models.DecimalField('Área Útil (m²)', max_digits=10, decimal_places=2, null=True, blank=True)
     
-    numQuartos = models.IntegerField('Número de Quartos', null=True, blank=True, help_text='Número de quartos no imóvel')
-    numBanheiros = models.IntegerField('Número de Banheiros', null=True, blank=True, help_text='Número de banheiros no imóvel')
-    vagasGaragem = models.IntegerField('Vagas de Garagem', null=True, blank=True, help_text='Número de vagas de garagem disponíveis')
+    numQuartos = models.IntegerField('Número de Quartos', null=True, blank=True,)
+    numBanheiros = models.IntegerField('Número de Banheiros', null=True, blank=True,)
+    vagasGaragem = models.IntegerField('Vagas de Garagem', null=True, blank=True,)
 
-    caracteristicas = models.TextField('Características', null=True, blank=True, help_text='Descrição das características do imóvel')
-    comodidades = models.TextField('Comodidades', null=True, blank=True, help_text='Lista de comodidades oferecidas pelo imóvel')
-    descricao = models.TextField('Descrição Completa', null=True, blank=True, help_text='Descrição detalhada do imóvel')
+    caracteristicas = models.TextField('Características', null=True, blank=True, )
+    comodidades = models.TextField('Comodidades', null=True, blank=True,)
+    descricao = models.TextField('Descrição Completa', null=True, blank=True, )
 
-    tipoImovel = models.CharField('Tipo de Imóvel', max_length=20, choices=[('Casa', 'Casa'), ('Apartamento', 'Apartamento'), ('Terreno', 'Terreno'), ('Comercial', 'Comercial'), ('Outro', 'Outro'),], null=True, blank=True, help_text='Tipo do imóvel (casa, apartamento, etc.)')
+    tipoImovel = models.CharField('Tipo de Imóvel', max_length=20, choices=[('Casa', 'Casa'), ('Apartamento', 'Apartamento'), ('Terreno', 'Terreno'), ('Comercial', 'Comercial'), ('Outro', 'Outro'),], null=True, blank=True)
     last_updated = models.DateTimeField('Última Atualização', auto_now=True, help_text='Data e hora da última atualização do imóvel')
 
     VALORIZACAO_PADRAO = Decimal('1.10')  
 
     zona_valorizacao = models.BooleanField(
+        'Zona de Valorização',
         default=False, 
         help_text="Marque se o imóvel está em uma região de valorização especial (ex: bairro de luxo, próximo a universidades)."
     )

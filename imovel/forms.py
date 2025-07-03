@@ -8,7 +8,6 @@ class ImovelModelForm(forms.ModelForm):
         fields = [
             'nome',
             'proprietario',
-            'endereco',
             'foto',
             'disponivel_locacao',
             'valorVenda',          
@@ -28,7 +27,6 @@ class ImovelModelForm(forms.ModelForm):
         ]
         
         error_messages = {
-            'endereco': {'required': 'Endereço é obrigatório.'},
             'nome': {'required': 'Nome é obrigatório.'},
             'foto': {'required': 'Foto é obrigatória.'},
             'proprietario': {'required': 'Proprietário é obrigatório.'},
