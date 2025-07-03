@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from stdimage.models import StdImageField
 from proprietarios.models import Proprietario
@@ -8,7 +9,7 @@ from django.core.exceptions import ValidationError
 
 class Imovel(models.Model):  
     nome = models.CharField(max_length=100)  
-    codigoImovel = models.CharField('Código do Imóvel', max_length=10, unique=True, help_text='Código único do imóvel', default='Imovel')
+    codigoImovel = models.CharField('Código do Imóvel', max_length=10, unique=True, help_text='Código único do imóvel') 
     foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)  
     endereco = models.CharField('Endereço', max_length=100, help_text='Endereço completo')
     proprietario = models.ManyToManyField(Proprietario, verbose_name='Proprietário', help_text='Selecione o proprietário do imóvel')
@@ -73,6 +74,36 @@ class Imovel(models.Model):
     def pendencia_transacao(self):
         return Transacao.objects.filter(codigoImovel=self, statusTransacao='Pendente').exists()
     
+    def save(self, *args, **kwargs):
+        if not self.codigoImovel:
+            nome_modelo = self.__class__.__name__
+            prefixo = nome_modelo[0:2].upper()
+            sufixo = nome_modelo[-2:].upper()
+
+            padrao = re.compile(rf"^{prefixo}(\d+){sufixo}$")
+            
+            ultimo_numero_sequencial = 99
+            
+            todos_os_codigos_do_modelo = self.__class__.objects.filter(
+                codigoImovel__startswith=prefixo,
+                codigoImovel__endswith=sufixo
+            ).values_list('codigoImovel', flat=True)
+
+            for codigo in todos_os_codigos_do_modelo:
+                correspondencia = padrao.match(codigo)
+                if correspondencia:
+                    try:
+                        numero_atual = int(correspondencia.group(1))
+                        if numero_atual > ultimo_numero_sequencial:
+                            ultimo_numero_sequencial = numero_atual
+                    except ValueError:
+                        pass
+            
+            proximo_numero_sequencial = ultimo_numero_sequencial + 1
+            self.codigoImovel = f"{prefixo}{proximo_numero_sequencial:03d}{sufixo}"
+        
+        super().save(*args, **kwargs)
+
     def delete(self, *args, **kwargs):
 
         if self.imovel.exists(): 

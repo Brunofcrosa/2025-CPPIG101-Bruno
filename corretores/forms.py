@@ -4,7 +4,7 @@ from .models import Corretor
 class CorretorModelForm(forms.ModelForm):
     class Meta:
         model = Corretor
-        fields = ['nome', 'endereco', 'telefone', 'email', 'foto', 'codigoCorretor']
+        fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
         
 
         error_messages = {

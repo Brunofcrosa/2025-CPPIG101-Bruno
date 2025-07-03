@@ -230,9 +230,9 @@
           <div class="text-center">
             {% if corretor_destaque %}
             {% if corretor_destaque.foto %}
-            <img src="{{ corretor_destaque.foto.url }}" class="rounded-circle mb-3" width="220" alt="Corretor">
+            <img src="{{ corretor_destaque.foto.url }}" class="rounded-circle mb-3" width="200" alt="Corretor">
             {% else %}
-            <img src="{% static 'img/corretor_placeholder.jpeg' %}" class="rounded-circle mb-3" width="220" alt="Corretor">
+            <img src="{% static 'img/corretor_placeholder.jpeg' %}" class="rounded-circle mb-3" width="400" alt="Corretor">
             {% endif %}
             <h4>{{ corretor_destaque.nome }}</h4>
             <p class="text-muted">Código: {{ corretor_destaque.codigoCorretor }}</p>

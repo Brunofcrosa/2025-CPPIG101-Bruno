@@ -4,7 +4,7 @@ from .models import Visita
 class VisitaModelForm(forms.ModelForm):
     class Meta:
         model = Visita
-        fields = ['imovel', 'corretor', 'cliente', 'data', 'codigoVisita']
+        fields = ['imovel', 'corretor', 'cliente', 'data']
         
         error_messages = {
             'imovel': {'required': 'É um campo obrigatório'},

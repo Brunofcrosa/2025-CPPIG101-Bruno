@@ -1,9 +1,10 @@
+import re
 from django.db import models
 import imovel.models
 from decimal import Decimal 
 # Create your models here.
 class Transacao(models.Model):
-    codigoTransacao = models.CharField('Código da Transação', max_length=10, unique=True, default='Transação')
+    codigoTransacao = models.CharField('Código da Transação', max_length=10, unique=True) 
     codigoImovel = models.ForeignKey('imovel.Imovel', on_delete=models.CASCADE, verbose_name='Código do Imóvel')
     codigoCorretor = models.ForeignKey('corretores.Corretor', on_delete=models.CASCADE, verbose_name='Código do Corretor')
     codigoCliente = models.ForeignKey('cliente.Cliente', on_delete=models.CASCADE, verbose_name='Código do Cliente')
@@ -21,6 +22,33 @@ class Transacao(models.Model):
         return f"Transação {self.codigoTransacao}"
     
     def save(self, *args, **kwargs):
+        if not self.codigoTransacao:
+            nome_modelo = self.__class__.__name__
+            prefixo = nome_modelo[0:2].upper()
+            sufixo = nome_modelo[-2:].upper()
+
+            padrao = re.compile(rf"^{prefixo}(\d+){sufixo}$")
+            
+            ultimo_numero_sequencial = 99
+            
+            todos_os_codigos_do_modelo = self.__class__.objects.filter(
+                codigoTransacao__startswith=prefixo,
+                codigoTransacao__endswith=sufixo
+            ).values_list('codigoTransacao', flat=True)
+
+            for codigo in todos_os_codigos_do_modelo:
+                correspondencia = padrao.match(codigo)
+                if correspondencia:
+                    try:
+                        numero_atual = int(correspondencia.group(1))
+                        if numero_atual > ultimo_numero_sequencial:
+                            ultimo_numero_sequencial = numero_atual
+                    except ValueError:
+                        pass
+            
+            proximo_numero_sequencial = ultimo_numero_sequencial + 1
+            self.codigoTransacao = f"{prefixo}{proximo_numero_sequencial:03d}{sufixo}"
+
 
         TAXA_VENDA_NORMAL = Decimal('0.05')  
         TAXA_ALUGUEL_NORMAL = Decimal('0.08') 
