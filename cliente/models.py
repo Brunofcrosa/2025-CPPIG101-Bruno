@@ -16,18 +16,14 @@ class Cliente(Pessoa):
 
     def save(self, *args, **kwargs):
         if not self.codigoCliente:  
-        
             iniciais = self.__class__.__name__[:2].upper()  
             finais = self.__class__.__name__[-2:].upper()   
-        
-        
             ultimo_cliente = Cliente.objects.order_by('-codigoCliente').first()
         
             if ultimo_cliente:  
                 numero = int(ultimo_cliente.codigoCliente[2:-2]) + 1
             else:  
                 numero = 1
-            
         
             self.codigoCliente = f"{iniciais}{numero:03d}{finais}"
     

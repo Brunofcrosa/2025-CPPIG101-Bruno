@@ -7,7 +7,7 @@ class Pessoa(models.Model):
     telefone = models.CharField('Telefone', max_length=15)
     foto = StdImageField('Foto', upload_to='pessoas', delete_orphans=True, null=True, blank=True)
     endereco = models.CharField('Endereço', max_length=255, null=True, blank=True)
-
+    
     class Meta:
         abstract = True
 

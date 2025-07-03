@@ -33,7 +33,7 @@ class ImovelModelForm(forms.ModelForm):
             'foto': {'required': 'Foto é obrigatória.'},
             'proprietario': {'required': 'Proprietário é obrigatório.'},
         }
-        
+    
     def clean(self):
         cleaned_data = super().clean() 
         
