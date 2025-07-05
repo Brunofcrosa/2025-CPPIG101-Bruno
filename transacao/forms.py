@@ -1,3 +1,4 @@
+import datetime
 from django import forms
 from .models import Transacao
 from visita.models import Visita
@@ -9,6 +10,15 @@ class TransacaoModelForm(forms.ModelForm):
         model = Transacao
         fields = ['codigoImovel', 'codigoCorretor', 'codigoCliente', 'tipoTransacao', 'dataTransacao', 'statusTransacao', 'valorVenda']
         
+        widgets = {
+            'dataTransacao': forms.DateInput(
+                attrs={
+                    'type': 'date',
+                    'min': datetime.date.today().isoformat()
+                }
+            ),
+        }
+
         error_messages = {
           
         }
