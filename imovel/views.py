@@ -68,12 +68,10 @@ class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView)
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
-            self.object.delete() 
-            messages.success(request, self.success_message)
-            return self.get_success_url() 
+            return super().post(request, *args, **kwargs)  
         except ValidationError as e:
-            messages.error(request, e.message)
-            return self.render_to_response(self.get_context_data(object=self.object)) 
+            messages.error(request, str(e))
+            return self.render_to_response(self.get_context_data(object=self.object))
         except ProtectedError:
             messages.error(request, "Não é possível excluir este imóvel pois há registros relacionados que o impedem.")
             return self.render_to_response(self.get_context_data(object=self.object))
