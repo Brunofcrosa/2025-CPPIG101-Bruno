@@ -109,10 +109,10 @@
                                                                 <p class="mb-0"><strong>Status da Transação:</strong> {{ transacao.statusTransacao }}</p>
                                                             </div>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Valor de Venda:</strong> R$ {{ transacao.valorVenda|default:"-" }}</p>
+                                                                <p class="mb-0"><strong>Valor de Venda:</strong> R$ {{ transacao.valorVenda|floatformat:"2g" }}</p>
                                                             </div>
                                                             <div class="mb-2">
-                                                                <p class="mb-0"><strong>Valor da Comissão:</strong> R$ {{ transacao.valorComissao|default:"-" }}</p>
+                                                                <p class="mb-0"><strong>Valor da Comissão:</strong> R$ {{ transacao.valorComissao|floatformat:"2g" }}</p>
                                                             </div>
                                                         </div>
                                                     </div>

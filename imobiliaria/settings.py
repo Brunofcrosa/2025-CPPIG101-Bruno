@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-INSTALLED_APPS += ['django_bootstrap5', 'stdimage', ]
+INSTALLED_APPS += ['django_bootstrap5', 'stdimage', 'django.contrib.humanize', ]
 
 INSTALLED_APPS += ['home', 'imovel', 'cliente', 'visita', 'corretores', 'proprietarios', 'transacao','pessoa' ]
 

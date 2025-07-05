@@ -123,16 +123,16 @@
                                                 </div>
                                                 <hr>
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Valor de Venda (Base):</strong> R$ {{ imovel.valorVenda|default:"-" }}</p>
+                                                    <p class="card-text">Valor de Venda: R$ {{ imovel.valorVenda|floatformat:"2g" }}</p>
                                                 </div>
                                                 <div class="mb-2">
                                                     <p class="mb-0"><strong>Valor de Venda (Com Valorização):</strong> R$ {{ imovel.calcular_valor_venda_com_valorizacao|default:"-" }}</p>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Valor IPTU:</strong> R$ {{ imovel.valorIPTU|default:"-" }}</p>
+                                                    <p class="card-text">IPTU: R$ {{ imovel.valorIPTU|floatformat:"2g" }}</p>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <p class="mb-0"><strong>Valor do Condomínio:</strong> R$ {{ imovel.valorCondominio|default:"-" }}</p>
+                                                    <p class="card-text">Condomínio: R$ {{ imovel.valorCondominio|floatformat:"2g" }}</p>
                                                 </div>
                                                 <hr>
                                                 <div class="mb-2">

@@ -1,6 +1,8 @@
 from django import forms
 from .models import Imovel
 from transacao.models import Transacao
+from decimal import Decimal
+import re
 
 class ImovelModelForm(forms.ModelForm):
     class Meta:
@@ -32,6 +34,24 @@ class ImovelModelForm(forms.ModelForm):
             'proprietario': {'required': 'Proprietário é obrigatório.'},
         }
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+       
+        if self.instance.pk and self.instance.valorVenda is not None:
+            self.initial['valorVenda'] = self.instance.get_valor_venda_br()
+
+    def clean_valorVenda(self):
+        valor_venda = self.cleaned_data.get('valorVenda')
+        if valor_venda:
+            
+            valor_limpo = valor_venda.replace('.', '').replace(',', '.')
+            try:
+                
+                return Decimal(valor_limpo)
+            except Exception:
+                raise forms.ValidationError("Formato inválido para o valor de venda. Use o formato 100.000,00.")
+        return valor_venda
+
     def clean(self):
         cleaned_data = super().clean() 
         

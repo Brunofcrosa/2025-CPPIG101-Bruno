@@ -4,7 +4,7 @@ from stdimage.models import StdImageField
 from proprietarios.models import Proprietario
 from transacao.models import Transacao
 from decimal import Decimal
-from django.utils import timezone 
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 class Imovel(models.Model):  
@@ -82,6 +82,13 @@ class Imovel(models.Model):
     def pendencia_transacao(self):
         return Transacao.objects.filter(codigoImovel=self, statusTransacao='Pendente').exists()
     
+    def get_valor_venda_br(self):
+        if self.valorVenda is None:
+            return None
+
+        return f"{self.valorVenda:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
     def save(self, *args, **kwargs):
         if not self.codigoImovel:  
         

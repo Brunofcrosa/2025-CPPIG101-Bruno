@@ -70,7 +70,7 @@
             <h6 class="card-title mb-0 me-2">Faturamento</h6>
             <i class="bi bi-graph-up fs-4 text-purple"></i>
           </div>
-          <h3 class="card-text mb-1">R$ {{ faturamento_mensal|floatformat:2 }}</h3>
+          <h3 class="card-text mb-1">R$ {{ faturamento_mensal|floatformat:"2g" }}</h3>
           <small class="text-muted">Mensal</small>
         </div>
       </div>
@@ -105,7 +105,7 @@
                   <h5 class="card-title mt-1">{{imovel.nome}}</h5>
                   <p class="card-text text-muted mb-2">{{imovel.endereco}}</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|floatformat:2|default:"0.00" }}</span>
+                    <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|floatformat:"2g"|default:"0.00" }}</span>
                     <div class="text-muted small">
                       <i class="bi bi-door-open"></i> {{ imovel.numQuartos|default:"-" }}
                       <i class="bi bi-droplet ms-2"></i> {{ imovel.numBanheiros|default:"-" }}
@@ -193,7 +193,7 @@
                     </div>
                   </td>
                   <td>{{ transacao.codigoCliente.nome }}</td>
-                  <td>R$ {{ transacao.valorVenda|floatformat:2 }}</td>
+                  <td>R$ {{ transacao.valorVenda|floatformat:"2g" }}</td>
                   <td>{{ transacao.dataTransacao|date:"d/m/Y" }}</td>
                   <td>
                     {% if transacao.statusTransacao == 'Concluída' %}
@@ -243,7 +243,7 @@
                 <small class="text-muted">Vendas no mês</small>
               </div>
               <div class="text-center">
-                <h5 class="mb-0">R$ {{ corretor_destaque_dados.faturado_mes|floatformat:2 }}</h5>
+                <h5 class="mb-0">{{ corretor_destaque_dados.nome }} R$ {{ corretor_destaque_dados.faturado_mes|floatformat:"2g" }}</h5>
                 <small class="text-muted">Faturado</small>
               </div>
               <div class="text-center">
