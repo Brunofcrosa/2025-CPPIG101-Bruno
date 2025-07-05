@@ -6,8 +6,6 @@ class CorretorModelForm(forms.ModelForm):
     class Meta:
         model = Corretor
         fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
-        
-
         error_messages = {
             'nome': {'required': 'O nome do Corretor é um campo obrigatório.'},
             'endereco': {'required': 'O endereço do Corretor é um campo obrigatório.'},
@@ -34,7 +32,6 @@ class CorretorModelForm(forms.ModelForm):
                 raise forms.ValidationError(
                     'O telefone deve conter exatamente 10 ou 11 dígitos numéricos (incluindo o DDD).'
                 )
-            
             if len(numeros) == 11:
                 telefone_formatado = f'({numeros[0:2]}){numeros[2:7]}-{numeros[7:11]}'
             else: 

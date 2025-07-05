@@ -1,6 +1,3 @@
-from django.db import models, transaction
-from django.core.exceptions import ValidationError
-import re
 from django.db import models
 from pessoa.models import Pessoa
     

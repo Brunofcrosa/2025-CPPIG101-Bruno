@@ -1,7 +1,4 @@
 from django.db import models
-from stdimage.models import StdImageField
-from imovel.models import Imovel
-from cliente.models import Cliente
 import re
 class Visita(models.Model):
     corretor = models.ForeignKey('corretores.Corretor', on_delete=models.CASCADE, related_name='corretor_visitas', verbose_name='Corretor:', null=True)

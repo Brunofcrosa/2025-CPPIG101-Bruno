@@ -26,7 +26,7 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            messages.info(self.request, 'Nenhum Proprietário encontrado!')
+            messages.info(self.request, 'Nenhum proprietário encontrado!')
             return Proprietario.objects.none()
 
     def get_context_data(self, **kwargs):

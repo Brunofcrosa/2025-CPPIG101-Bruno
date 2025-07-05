@@ -1,6 +1,4 @@
-import re
 from django.db import models
-import imovel.models
 from decimal import Decimal 
 # Create your models here.
 class Transacao(models.Model):

@@ -25,7 +25,7 @@ class ClientesView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            messages.info(self.request, 'Nenhum cliente encontrado com esse nome')
+            messages.info(self.request, 'Nenhum cliente encontrado!')
             return Cliente.objects.none()
 
     def get_context_data(self, **kwargs):

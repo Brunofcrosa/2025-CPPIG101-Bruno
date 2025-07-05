@@ -43,7 +43,7 @@
                                         {% endfor %}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|default:"0.00" }}</span>
+                                        <span class="fw-bold text-primary">R$ {{ imovel.calcular_valor_venda_com_valorizacao|floatformat:"2g" }}</span>
                                         <div class="text-muted small">
                                             <i class="bi bi-door-open"></i> {{ imovel.numQuartos|default:"-" }}
                                             <i class="bi bi-droplet ms-2"></i> {{ imovel.numBanheiros|default:"-" }}
@@ -125,7 +125,7 @@
                                                         <p class="card-text">Valor de Venda: R$ {{ imovel.valorVenda|floatformat:"2g" }}</p>
                                                     </div>
                                                     <div class="mb-2">
-                                                        <p class="mb-0"><strong>Valor de Venda (Com Valorização):</strong> R$ {{ imovel.calcular_valor_venda_com_valorizacao|default:"-" }}</p>
+                                                        <p class="mb-0"><strong>Valor de Venda (Com Valorização):</strong> R$ {{ imovel.calcular_valor_venda_com_valorizacao|floatformat:"2g" }}</p>
                                                     </div>
                                                     <div class="mb-2">
                                                         <p class="card-text">IPTU: R$ {{ imovel.valorIPTU|floatformat:"2g" }}</p>
