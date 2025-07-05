@@ -8,6 +8,7 @@ from .models import Transacao
 from .forms import TransacaoModelForm 
 from django.core.exceptions import ValidationError
 from django.db.models import ProtectedError
+from django.http import HttpResponseRedirect 
 
 class TransacoesView(PermissionRequiredMixin, ListView):
     permission_required = 'transacao.view_transacao'
@@ -44,7 +45,7 @@ class TransacaoAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView)
     form_class = TransacaoModelForm 
     template_name = 'transacao_form.html'
     success_url = reverse_lazy('transacao')
-    success_message = 'transacao cadastrado com sucesso!'
+    success_message = 'Transação cadastrada com sucesso!'
 
 class TransacaoUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'transacao.change_transacao'
@@ -53,7 +54,7 @@ class TransacaoUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateVi
     form_class = TransacaoModelForm 
     template_name = 'transacao_form.html'
     success_url = reverse_lazy('transacao')
-    success_message = 'transacao alterado com sucesso!'
+    success_message = 'Transação alterada com sucesso!'
 
 class TransacaoDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
     permission_required = 'transacao.delete_transacao'
@@ -61,14 +62,14 @@ class TransacaoDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteVi
     model = Transacao
     template_name = 'transacao_apagar.html'
     success_url = reverse_lazy('transacao')
-    success_message = 'transacao excluído com sucesso!'
+    success_message = 'Transação excluída com sucesso!'
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
             self.object.delete() 
             messages.success(request, self.success_message)
-            return self.get_success_url() 
+            return HttpResponseRedirect(self.get_success_url()) 
         except ValidationError as e:
             messages.error(request, e.message)
             return self.render_to_response(self.get_context_data(object=self.object)) 

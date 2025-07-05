@@ -5,17 +5,12 @@
     <div class="card-body">
         <div class="row">
             <h3 class="text-center">Dados da transação</h3>
-            <p class="p-2 mt-2"><strong>codigoTransacao: </strong>{{ object.codigoTransacao }}</p>
-            <p class="p-2 mt-2"><strong>codigoImovel: </strong>{{ object.codigoImovel }}</p>
+            <p class="p-2 mt-2"><strong>Transação de Código: </strong>{{ object.codigoTransacao }}</p>
+            <p class="p-2 mt-2"><strong>Imovel: </strong>{{ object.codigoImovel }}</p>
             <p class="p-2 mt-2"><strong>Tipo: </strong>{{ object.tipoTransacao}}</p>
             <p class="p-2 mt-2"><strong>Data: </strong>{{ object.dataTransacao}}</p>
-            <p class="p-2 mt-2"><strong>Valor de Venda: </strong>{{ object.valorVenda}}</p>
+            <p class="p-2 mt-2"><strong>Valor de Venda: </strong>{{ object.valorVenda|floatformat:"2g"}}</p>
             
-            {% if object.foto.url is not empty %}
-                <div class="col-2">
-                    <img src="{{ object.foto.url }}" class="img-thumbnail" width="100" height="100" alt=""/>
-                </div>
-            {% endif %}
             
             <p class="p-2 mt-2">Confirma a exclusão da: <strong>{{ object }}</strong></p>
             

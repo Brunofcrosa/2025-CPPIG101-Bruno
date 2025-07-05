@@ -38,13 +38,7 @@
                                     {% for transacao in object_list %}
                                     <tr>
                                         <td>
-                                            {% if transacao.codigoCliente.foto %}
-                                            <img src="{{ transacao.codigoCliente.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do cliente"/>
-                                            {% else %}
-                                            <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
-                                                <i class="bi bi-person text-muted fs-5"></i>
-                                            </div>
-                                            {% endif %}
+                                            {{ transacao.codigoCliente }}
                                         </td>
                                         <td class="fw-bold">{{ transacao.codigoImovel }}</td>
                                         <td>{{ transacao.codigoCorretor|default:"-" }}</td>
@@ -79,15 +73,6 @@
                                                 
                                                 <div class="modal-body">
                                                     <div class="row">
-                                                        <div class="col-md-4 text-center mb-3">
-                                                            {% if transacao.codigoCliente.foto %}
-                                                            <img src="{{ transacao.codigoCliente.foto.url }}" class="img-thumbnail rounded-circle" width="120" height="120" alt="Foto do cliente"/>
-                                                            {% else %}
-                                                            <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
-                                                                <i class="bi bi-person text-muted fs-1"></i>
-                                                            </div>
-                                                            {% endif %}
-                                                        </div>
                                                         <div class="col-md-8">
                                                             <h6 class="fw-bold">Transação: {{ transacao.codigoTransacao }}</h6>
                                                             <div class="mb-2">

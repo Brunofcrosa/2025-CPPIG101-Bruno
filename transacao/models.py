@@ -5,14 +5,14 @@ from decimal import Decimal
 # Create your models here.
 class Transacao(models.Model):
     codigoTransacao = models.CharField('Código da Transação', max_length=10, unique=True) 
-    codigoImovel = models.ForeignKey('imovel.Imovel', on_delete=models.CASCADE, verbose_name='Código do Imóvel')
-    codigoCorretor = models.ForeignKey('corretores.Corretor', on_delete=models.CASCADE, verbose_name='Código do Corretor')
-    codigoCliente = models.ForeignKey('cliente.Cliente', on_delete=models.CASCADE, verbose_name='Código do Cliente')
-    tipoTransacao = models.CharField('Tipo de Transação', max_length=20, choices=[('Venda', 'Venda'), ('Aluguel', 'Aluguel')])
-    dataTransacao = models.DateField('Data da Transação')
-    statusTransacao = models.CharField('Status da Transação', max_length=20, choices=[('Pendente', 'Pendente'), ('Concluída', 'Concluída'), ('Cancelada', 'Cancelada')])
-    valorVenda = models.DecimalField('Valor da Venda', max_digits=10, decimal_places=2, null=True, blank=True)
-    valorComissao = models.DecimalField('Valor da Comissão', max_digits=10, decimal_places=2, null=True, blank=True)
+    codigoImovel = models.ForeignKey('imovel.Imovel', on_delete=models.CASCADE, verbose_name='Imóvel:')
+    codigoCorretor = models.ForeignKey('corretores.Corretor', on_delete=models.CASCADE, verbose_name='Corretor:')
+    codigoCliente = models.ForeignKey('cliente.Cliente', on_delete=models.CASCADE, verbose_name='Cliente:')
+    tipoTransacao = models.CharField('Tipo:', max_length=20, choices=[('Venda', 'Venda'), ('Aluguel', 'Aluguel')])
+    dataTransacao = models.DateField('Data:')
+    statusTransacao = models.CharField('Status:', max_length=20, choices=[('Pendente', 'Pendente'), ('Concluída', 'Concluída'), ('Cancelada', 'Cancelada')])
+    valorVenda = models.DecimalField('Valor da Venda:', max_digits=10, decimal_places=2, null=True, blank=True)
+    valorComissao = models.DecimalField('Valor da Comissão:', max_digits=10, decimal_places=2, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Transação'

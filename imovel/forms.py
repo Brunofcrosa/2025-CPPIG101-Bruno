@@ -42,14 +42,17 @@ class ImovelModelForm(forms.ModelForm):
 
     def clean_valorVenda(self):
         valor_venda = self.cleaned_data.get('valorVenda')
-        if valor_venda:
-            
+        
+        if isinstance(valor_venda, Decimal):
+            return valor_venda
+
+        if isinstance(valor_venda, str):
             valor_limpo = valor_venda.replace('.', '').replace(',', '.')
             try:
-                
                 return Decimal(valor_limpo)
             except Exception:
                 raise forms.ValidationError("Formato inválido para o valor de venda. Use o formato 100.000,00.")
+        
         return valor_venda
 
     def clean(self):
