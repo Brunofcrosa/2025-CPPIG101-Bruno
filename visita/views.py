@@ -27,7 +27,7 @@ class VisitaView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            return messages.info(self.request, 'Nenhum agendamento encontrado')
+            return messages.info(self.request, 'Nenhum agendamento encontrado!')
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -5,13 +5,13 @@
     <div class="card-body">
         <div class="row">
             <h3 class="text-center">Dados do Agendamento</h3>
-            <p class="p-2 mt-2"><strong>Imovel: </strong>{{ object.imovel }}</p>
+            <p class="p-2 mt-2"><strong>Imóvel: </strong>{{ object.imovel }}</p>
             <p class="p-2 mt-2"><strong>Corretor: </strong>{{ object.corretor }}</p>
             <p class="p-2 mt-2"><strong>Cliente: </strong>{{ object.cliente }}</p>
             <p class="p-2 mt-2"><strong>Data: </strong>{{ object.data }}</p>
             
             
-            <p class="p-2 mt-2">Confirma a exclusão do Agendamento de código: <strong>{{ object.codigoVisita }}</strong></p>
+            <p class="p-2 mt-2">Confirme a exclusão do Agendamento: <strong>{{ object.codigoVisita }}</strong></p>
             
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

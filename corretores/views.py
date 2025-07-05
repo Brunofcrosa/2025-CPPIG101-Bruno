@@ -26,7 +26,7 @@ class CorretoresView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            messages.info(self.request, 'Nenhum corretor encontrado com esse nome')
+            messages.info(self.request, 'Nenhum corretor encontrado!')
             return Corretor.objects.none()
 
     def get_context_data(self, **kwargs):
@@ -47,7 +47,7 @@ class CorretorAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = CorretorModelForm
     template_name = 'corretor_form.html'
     success_url = reverse_lazy('corretor')
-    success_message = 'corretor cadastrado com sucesso!'
+    success_message = 'Corretor cadastrado com sucesso!'
 
 class CorretorUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'corretores.change_corretor'
@@ -56,7 +56,7 @@ class CorretorUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateVie
     form_class = CorretorModelForm
     template_name = 'corretor_form.html'
     success_url = reverse_lazy('corretor')
-    success_message = 'corretor alterado com sucesso!'
+    success_message = 'Corretor alterado com sucesso!'
 
 class CorretorDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
     permission_required = 'corretores.delete_corretor'
@@ -64,4 +64,4 @@ class CorretorDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteVie
     model = Corretor
     template_name = 'corretor_apagar.html'
     success_url = reverse_lazy('corretor')
-    success_message = 'corretor excluído com sucesso!'
+    success_message = 'Corretor excluído com sucesso!'

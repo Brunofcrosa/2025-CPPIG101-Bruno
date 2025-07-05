@@ -9,13 +9,8 @@
             <p class="p-2 mt-2"><strong>Codigo: </strong>{{ object.codigoCorretor }}</p>
             <p class="p-2 mt-2"><strong>Telefone: </strong>{{ object.telefone }}</p>
             
-            {% if object.foto.url is not empty %}
-                <div class="col-2">
-                    <img src="{{ object.foto.url }}" class="img-thumbnail" width="100" height="100" alt=""/>
-                </div>
-            {% endif %}
             
-            <p class="p-2 mt-2">Confirma a exclusão do corretor: <strong>{{ object.nome }}</strong></p>
+            <p class="p-2 mt-2">Confirme a exclusão do corretor: <strong>{{ object.nome }}</strong></p>
             
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}

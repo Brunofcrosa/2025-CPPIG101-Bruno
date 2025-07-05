@@ -8,13 +8,20 @@ class ProprietarioModelForm(forms.ModelForm):
         fields = ['nome', 'endereco', 'telefone', 'email', 'foto']
         
         error_messages = {
-            'nome': {'required': 'O nome do Proprietario é um campo obrigatório'},
-            'endereco': {'required': 'O endereço do Proprietario é um campo obrigatório'},
+            'nome': {'required': 'O nome do Proprietário é um campo obrigatório'},
+            'endereco': {'required': 'O endereço do Proprietário é um campo obrigatório'},
             'telefone': {'required': 'O número do telefone é um campo obrigatório'},
-            'email': {'required': 'O e-mail do Proprietario é um campo obrigatório',
+            'email': {'required': 'O e-mail do Proprietário é um campo obrigatório',
                 'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com',
             }
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nome'].widget.attrs['placeholder'] = 'Fulano da imobiliária'
+        self.fields['endereco'].widget.attrs['placeholder'] = 'Av. Roraima nº 1000 Cidade Universitária Bairro - Camobi, Santa Maria - RS, 97105-900'
+        self.fields['telefone'].widget.attrs['placeholder'] = '(55) 99999-9999'
+        self.fields['email'].widget.attrs['placeholder'] = 'proprietário@imobiliária.com'
 
     def clean_telefone(self):
         telefone = self.cleaned_data.get('telefone')

@@ -26,7 +26,7 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
-            messages.info(self.request, 'Nenhum Proprietario encontrado com esse nome')
+            messages.info(self.request, 'Nenhum Proprietário encontrado!')
             return Proprietario.objects.none()
 
     def get_context_data(self, **kwargs):
@@ -47,7 +47,7 @@ class ProprietarioAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateVi
     form_class = ProprietarioModelForm
     template_name = 'proprietario_form.html'
     success_url = reverse_lazy('proprietario')
-    success_message = 'Proprietario cadastrado com sucesso!'
+    success_message = 'Proprietário cadastrado com sucesso!'
 
 class ProprietarioUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'proprietarios.change_proprietario'
@@ -56,7 +56,7 @@ class ProprietarioUpdateView(PermissionRequiredMixin, SuccessMessageMixin, Updat
     form_class = ProprietarioModelForm
     template_name = 'proprietario_form.html'
     success_url = reverse_lazy('proprietario')
-    success_message = 'Proprietario alterado com sucesso!'
+    success_message = 'Proprietário alterado com sucesso!'
 
 class ProprietarioDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
     permission_required = 'proprietarios.delete_proprietario'
@@ -64,4 +64,4 @@ class ProprietarioDeleteView(PermissionRequiredMixin, SuccessMessageMixin, Delet
     model = Proprietario
     template_name = 'proprietario_apagar.html'
     success_url = reverse_lazy('proprietario')
-    success_message = 'Proprietario excluído com sucesso!'
+    success_message = 'Proprietário excluído com sucesso!'

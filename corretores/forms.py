@@ -19,6 +19,13 @@ class CorretorModelForm(forms.ModelForm):
             'foto': {'required': 'A foto do Corretor é um campo obrigatório.'}, 
         }
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nome'].widget.attrs['placeholder'] = 'Fulano da imobiliária'
+        self.fields['endereco'].widget.attrs['placeholder'] = 'Av. Roraima nº 1000 Cidade Universitária Bairro - Camobi, Santa Maria - RS, 97105-900'
+        self.fields['telefone'].widget.attrs['placeholder'] = '(55) 99999-9999'
+        self.fields['email'].widget.attrs['placeholder'] = 'corretor@imobiliária.com'
+        
     def clean_telefone(self):
         telefone = self.cleaned_data.get('telefone')
         if telefone:
