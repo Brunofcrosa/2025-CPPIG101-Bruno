@@ -1,11 +1,86 @@
-{% if request.user.is_authenticated %}
-  <div id="sidebar" class="d-flex flex-column p-0 bg-white" style="width: 250px; height: 100vh;">
+<aside id="sidebar-desktop" class="d-none d-lg-flex flex-column p-0 bg-white" style="width: 250px; height: 100vh; position: sticky; top: 0; left: 0;">
+  <div class="p-3 border-bottom d-flex align-items-center justify-content-center">
+    <h6 class="mb-0 text-uppercase fw-semibold text-muted">
+      Bem vindo
+    </h6>
+  </div>
+  <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItemsDesktop">
+    <li class="nav-item mb-1">
+      <a href="/"
+        class="nav-link {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-speedometer2 me-3 fs-5"></i>
+        <span>Estatísticas</span>
+      </a>
+    </li>
+    {% if perms.imovel.view_imovel %}
+    <li class="nav-item mb-1">
+      <a href="/imovel" 
+        class="nav-link {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-house-door me-3 fs-5"></i>
+        <span>Imóveis</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if perms.cliente.view_cliente %}
+    <li class="nav-item mb-1">
+      <a href="/clientes" 
+        class="nav-link {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-people me-3 fs-5"></i>
+        <span>Clientes</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if perms.visita.view_visita %}
+    <li class="nav-item mb-1">
+      <a href="/visitas" 
+        class="nav-link {% if request.path|slice:':8' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-calendar-event me-3 fs-5"></i>
+        <span>Agendamentos</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if perms.corretores.view_corretor %}
+    <li class="nav-item mb-1">
+      <a href="/corretores" 
+        class="nav-link {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-person me-3 fs-5"></i>
+        <span>Corretores</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if perms.proprietarios.view_proprietario %}
+    <li class="nav-item mb-1">
+      <a href="/proprietarios/" 
+        class="nav-link {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-people me-3 fs-5"></i>
+        <span>Proprietários</span>
+      </a>
+    </li>
+    {% endif %}
+    {% if perms.transacao.view_transacao %}
+    <li class="nav-item mb-1">
+      <a href="/transacao/" 
+        class="nav-link {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        <i class="bi bi-bar-chart me-3 fs-5"></i>
+        <span>Transações</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</aside>
+
+<aside id="sidebar-mobile" class="offcanvas offcanvas-start bg-white d-lg-none" tabindex="-1" aria-labelledby="sidebarMobileLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="sidebarMobileLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column p-0">
     <div class="p-3 border-bottom d-flex align-items-center justify-content-center">
       <h6 class="mb-0 text-uppercase fw-semibold text-muted">
         Bem vindo
       </h6>
     </div>
-    <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItems">
+    <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItemsMobile">
       <li class="nav-item mb-1">
         <a href="/"
           class="nav-link {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
@@ -13,7 +88,6 @@
           <span>Estatísticas</span>
         </a>
       </li>
-
       {% if perms.imovel.view_imovel %}
       <li class="nav-item mb-1">
         <a href="/imovel" 
@@ -22,7 +96,6 @@
           <span>Imóveis</span>
         </a>
       </li>
-
       {% endif %}
       {% if perms.cliente.view_cliente %}
       <li class="nav-item mb-1">
@@ -33,7 +106,6 @@
         </a>
       </li>
       {% endif %}
-
       {% if perms.visita.view_visita %}
       <li class="nav-item mb-1">
         <a href="/visitas" 
@@ -43,7 +115,6 @@
         </a>
       </li>
       {% endif %}
-
       {% if perms.corretores.view_corretor %}
       <li class="nav-item mb-1">
         <a href="/corretores" 
@@ -53,7 +124,6 @@
         </a>
       </li>
       {% endif %}
-
       {% if perms.proprietarios.view_proprietario %}
       <li class="nav-item mb-1">
         <a href="/proprietarios/" 
@@ -63,7 +133,6 @@
         </a>
       </li>
       {% endif %}
-
       {% if perms.transacao.view_transacao %}
       <li class="nav-item mb-1">
         <a href="/transacao/" 
@@ -75,4 +144,4 @@
       {% endif %}
     </ul>
   </div>
-{% endif %}
+</aside>
