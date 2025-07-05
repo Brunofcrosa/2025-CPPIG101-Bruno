@@ -101,7 +101,7 @@
                   {% endif %}
                 </div>
                 <div class="card-body">
-                  <small class="text-muted">Código: {{imovel.codigoImovel}}</small>
+                  <small class="text-muted">{{imovel.codigoImovel}}</small>
                   <h5 class="card-title mt-1">{{imovel.nome}}</h5>
                   <p class="card-text text-muted mb-2">{{imovel.endereco}}</p>
                   <div class="d-flex justify-content-between align-items-center">
@@ -138,14 +138,14 @@
               </div>
               <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-start">
-                  <h6 class="mb-1">Imovel: {{visita.imovel.nome}}</h6>
-                  <span class="badge bg-warning bg-opacity-20 text-warning">Agendada</span>
+                  <h6 class="mb-1">{{visita.imovel.nome}}</h6>
+                  <span class="badge bg-warning text-white">Agendada</span>
                 </div>
                 <small class="text-muted d-block">
-                  <i class="bi bi-clock me-1"></i> {{ visita.data|date:"d/m/Y" }}
+                  <i class="bi bi-clock me-1"></i>{{ visita.data|date:"d/m/Y" }}
                 </small>
                 <small class="text-muted">
-                  <i class="bi bi-person me-1"></i> Corretor: {{visita.corretor.nome}}
+                  <i class="bi bi-person me-1"></i>{{visita.corretor.nome}}
                 </small>
                 <div class="mt-2">
                   <a href="{% url 'visita_editar' visita.pk %}" class="btn btn-sm btn-outline-secondary">Detalhes</a>
@@ -197,11 +197,11 @@
                   <td>{{ transacao.dataTransacao|date:"d/m/Y" }}</td>
                   <td>
                     {% if transacao.statusTransacao == 'Concluída' %}
-                    <span class="badge bg-success bg-opacity-10 text-success">Concluída</span>
+                    <span class="badge bg-success  text-white">Concluída</span>
                     {% elif transacao.statusTransacao == 'Pendente' %}
-                    <span class="badge bg-warning bg-opacity-10 text-warning">Pendente</span>
+                    <span class="badge bg-warning  text-white">Pendente</span>
                     {% elif transacao.statusTransacao == 'Cancelada' %}
-                    <span class="badge bg-danger bg-opacity-10 text-danger">Cancelada</span>
+                    <span class="badge bg-danger  text-white">Cancelada</span>
                     {% endif %}
                   </td>
                   <td>
@@ -235,7 +235,7 @@
             <img src="{% static 'img/corretor_placeholder.jpeg' %}" class="rounded-circle mb-3" width="400" alt="Corretor">
             {% endif %}
             <h4>{{ corretor_destaque.nome }}</h4>
-            <p class="text-muted">Código: {{ corretor_destaque.codigoCorretor }}</p>
+            <p class="text-muted">{{ corretor_destaque.codigoCorretor }}</p>
 
             <div class="d-flex justify-content-between mb-3">
               <div class="text-center">

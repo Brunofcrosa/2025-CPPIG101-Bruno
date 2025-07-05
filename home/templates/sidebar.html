@@ -7,7 +7,7 @@
   <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItemsDesktop">
     <li class="nav-item mb-1">
       <a href="/"
-        class="nav-link {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-speedometer2 me-3 fs-5"></i>
         <span>Estatísticas</span>
       </a>
@@ -15,7 +15,7 @@
     {% if perms.imovel.view_imovel %}
     <li class="nav-item mb-1">
       <a href="/imovel" 
-        class="nav-link {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-house-door me-3 fs-5"></i>
         <span>Imóveis</span>
       </a>
@@ -24,7 +24,7 @@
     {% if perms.cliente.view_cliente %}
     <li class="nav-item mb-1">
       <a href="/clientes" 
-        class="nav-link {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-people me-3 fs-5"></i>
         <span>Clientes</span>
       </a>
@@ -33,7 +33,7 @@
     {% if perms.visita.view_visita %}
     <li class="nav-item mb-1">
       <a href="/visitas" 
-        class="nav-link {% if request.path|slice:':8' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':8' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-calendar-event me-3 fs-5"></i>
         <span>Agendamentos</span>
       </a>
@@ -42,7 +42,7 @@
     {% if perms.corretores.view_corretor %}
     <li class="nav-item mb-1">
       <a href="/corretores" 
-        class="nav-link {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-person me-3 fs-5"></i>
         <span>Corretores</span>
       </a>
@@ -51,7 +51,7 @@
     {% if perms.proprietarios.view_proprietario %}
     <li class="nav-item mb-1">
       <a href="/proprietarios/" 
-        class="nav-link {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-people me-3 fs-5"></i>
         <span>Proprietários</span>
       </a>
@@ -60,7 +60,7 @@
     {% if perms.transacao.view_transacao %}
     <li class="nav-item mb-1">
       <a href="/transacao/" 
-        class="nav-link {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+        class="nav-link w-100 {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
         <i class="bi bi-bar-chart me-3 fs-5"></i>
         <span>Transações</span>
       </a>
@@ -83,7 +83,7 @@
     <ul class="nav nav-pills flex-column mb-auto px-3 pt-2" id="sidebarItemsMobile">
       <li class="nav-item mb-1">
         <a href="/"
-          class="nav-link {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path == '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-speedometer2 me-3 fs-5"></i>
           <span>Estatísticas</span>
         </a>
@@ -91,7 +91,7 @@
       {% if perms.imovel.view_imovel %}
       <li class="nav-item mb-1">
         <a href="/imovel" 
-          class="nav-link {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':7' == '/imovel' and request.path != '/' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-house-door me-3 fs-5"></i>
           <span>Imóveis</span>
         </a>
@@ -100,7 +100,7 @@
       {% if perms.cliente.view_cliente %}
       <li class="nav-item mb-1">
         <a href="/clientes" 
-          class="nav-link {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':9' == '/clientes' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-people me-3 fs-5"></i>
           <span>Clientes</span>
         </a>
@@ -109,7 +109,7 @@
       {% if perms.visita.view_visita %}
       <li class="nav-item mb-1">
         <a href="/visitas" 
-          class="nav-link {% if request.path|slice:':8' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':8' == '/visitas' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-calendar-event me-3 fs-5"></i>
           <span>Agendamentos</span>
         </a>
@@ -118,7 +118,7 @@
       {% if perms.corretores.view_corretor %}
       <li class="nav-item mb-1">
         <a href="/corretores" 
-          class="nav-link {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':11' == '/corretores' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-person me-3 fs-5"></i>
           <span>Corretores</span>
         </a>
@@ -127,7 +127,7 @@
       {% if perms.proprietarios.view_proprietario %}
       <li class="nav-item mb-1">
         <a href="/proprietarios/" 
-          class="nav-link {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':14' == '/proprietarios' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-people me-3 fs-5"></i>
           <span>Proprietários</span>
         </a>
@@ -136,7 +136,7 @@
       {% if perms.transacao.view_transacao %}
       <li class="nav-item mb-1">
         <a href="/transacao/" 
-          class="nav-link {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
+          class="nav-link w-100 {% if request.path|slice:':10' == '/transacao' %}active text-primary bg-light{% else %}text-dark{% endif %} d-flex align-items-center rounded">
           <i class="bi bi-bar-chart me-3 fs-5"></i>
           <span>Transações</span>
         </a>

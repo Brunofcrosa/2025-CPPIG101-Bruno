@@ -12,7 +12,7 @@ class ClienteModelForm(forms.ModelForm):
             'endereco': {'required': 'O endereço do cliente é um campo obrigatório'},
             'telefone': {'required': 'O número do telefone é um campo obrigatório'},
             'email': {'required': 'O e-mail do cliente é um campo obrigatório',
-                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com',
+                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: cliente@cliente.com',
             }
         }
 

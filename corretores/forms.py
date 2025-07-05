@@ -14,7 +14,7 @@ class CorretorModelForm(forms.ModelForm):
             'telefone': {'required': 'O número do telefone é um campo obrigatório.'},
             'email': {
                 'required': 'O e-mail do Corretor é um campo obrigatório.',
-                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: fulano@dominio.com.',
+                'invalid': 'Formato inválido para o e-mail. Exemplo de formato válido: corretor@corretor.com.',
             }, 
             'foto': {'required': 'A foto do Corretor é um campo obrigatório.'}, 
         }
