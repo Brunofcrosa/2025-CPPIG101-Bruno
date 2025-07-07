@@ -29,23 +29,22 @@ class VisitaModelForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        imovel = cleaned_data.get('imovel')
+        imovel_agendado = cleaned_data.get('imovel')
         corretor = cleaned_data.get('corretor')
         data = cleaned_data.get('data')
         hora = cleaned_data.get('hora')
 
-        if imovel:
-            if imovel.status_imovel() == 'Em Confirmação de Venda':
+        if imovel_agendado:
+            if imovel_agendado.status_imovel() == 'Em Confirmação de Venda':
                 raise forms.ValidationError(
                     "Não é possível agendar visitas para este imóvel, pois ele está em processo de confirmação de venda."
                 )
 
-        if corretor and imovel and data and hora:
+        if corretor and data and hora:
             proposed_dt = datetime.datetime.combine(data, hora)
 
             visitas_com_potencial_conflito = Visita.objects.filter(
                 corretor=corretor,
-                imovel=imovel,
                 data=data
             )
             if self.instance and self.instance.pk:
@@ -58,7 +57,7 @@ class VisitaModelForm(forms.ModelForm):
                 if diferenca_tempo < timedelta(minutes=30):
                     self.add_error(
                         'hora',
-                        f"O corretor já possui uma outra visita agendada em {outra_visita.data.strftime('%d/%m/%Y')} às {outra_visita.hora.strftime('%H:%M')}! (Mínimo exigido é de 30 minutos!)"
+                        f"O corretor já possui uma visita agendada para o imóvel '{outra_visita.imovel.nome}' em {outra_visita.data.strftime('%d/%m/%Y')} às {outra_visita.hora.strftime('%H:%M')}. Intervalo mínimo entre visitas é de 30 minutos."
                     )
                     break
         return cleaned_data

@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Corretor
 from .forms import CorretorModelForm
-from django.utils import timezone 
 
 class CorretoresView(PermissionRequiredMixin, ListView):
     permission_required = 'corretores.view_corretor'
@@ -31,9 +30,6 @@ class CorretoresView(PermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_month = timezone.now().month
-        current_year = timezone.now().year
-
         context['total_corretores'] = Corretor.objects.count()
         context['corretores_ativos'] = Corretor.objects.count() 
         context['novos_corretores_mes'] = 0

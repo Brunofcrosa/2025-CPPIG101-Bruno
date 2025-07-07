@@ -46,7 +46,7 @@ class ImovelAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = ImovelModelForm
     template_name = 'imovel_form.html'
     success_url = reverse_lazy('imovel')
-    success_message = 'Imovel cadastrado com sucesso!'
+    success_message = 'Imóvel cadastrado com sucesso!'
 
 class ImovelUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'imovel.change_imovel'
@@ -55,7 +55,7 @@ class ImovelUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView)
     form_class = ImovelModelForm
     template_name = 'imovel_form.html'
     success_url = reverse_lazy('imovel')
-    success_message = 'Imovel alterado com sucesso!'
+    success_message = 'Imóvel alterado com sucesso!'
 
 class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
     permission_required = 'imovel.delete_imovel'
@@ -63,7 +63,7 @@ class ImovelDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView)
     model = Imovel
     template_name = 'imovel_apagar.html'
     success_url = reverse_lazy('imovel')
-    success_message = 'Imovel excluído com sucesso!'
+    success_message = 'Imóvel excluído com sucesso!'
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

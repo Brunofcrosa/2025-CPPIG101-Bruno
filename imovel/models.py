@@ -34,6 +34,10 @@ class Imovel(models.Model):
     tipoImovel = models.CharField('Tipo de Imóvel', max_length=20, choices=[('Casa', 'Casa'), ('Apartamento', 'Apartamento'), ('Terreno', 'Terreno'), ('Comercial', 'Comercial'), ('Outro', 'Outro'),], null=True, blank=True)
     last_updated = models.DateTimeField('Última Atualização', auto_now=True, help_text='Data e hora da última atualização do imóvel')
 
+    valorAluguel = models.DecimalField('Valor do Aluguel', max_digits=10, decimal_places=2, null=True, blank=True)
+
+
+
     VALORIZACAO_PADRAO = Decimal('1.10')  
 
     zona_valorizacao = models.BooleanField(

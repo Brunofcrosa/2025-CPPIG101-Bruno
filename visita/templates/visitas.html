@@ -24,8 +24,8 @@
                                 <thead class="table-light text-center">
                                     <tr>
                                         <th>Cliente</th>
-                                        <th>Imóvel</th>
                                         <th>Corretor</th>
+                                        <th>Imóvel</th>
                                         <th>Data</th>
                                         <th>Ações</th>
                                     </tr>
@@ -33,18 +33,10 @@
                                 <tbody class="text-center">
                                     {% for visita in object_list %}
                                     <tr>
-                                        <td>
-                                            {% if visita.cliente.foto %}
-                                            <img src="{{ visita.cliente.foto.url }}" class="rounded-circle" width="40" height="40" alt="Foto do cliente"/>
-                                            {% else %}
-                                            <div class="bg-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 40px; height: 40px;">
-                                                <i class="bi bi-person text-muted fs-5"></i>
-                                            </div>
-                                            {% endif %}
-                                        </td>
                                         <td class="fw-bold">{{ visita.cliente.nome }}</td>
+                                        <td>{{ visita.corretor.nome|default:"-" }}</td>
                                         <td>{{ visita.imovel.nome|default:"-" }}</td>
-                                        <td>{{ visita.data|date:"d/m/Y"|default:"-" }}</td>
+                                        <td>{{ visita.data|date:"d/m/Y"|default:"-" }} às {{visita.hora}}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 {% if perms.visita.change_visita %}

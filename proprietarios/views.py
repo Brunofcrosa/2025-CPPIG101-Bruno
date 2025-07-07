@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Proprietario
 from .forms import ProprietarioModelForm
-from django.utils import timezone
 
 class ProprietariosView(PermissionRequiredMixin, ListView):
     permission_required = 'proprietarios.view_proprietario'
@@ -31,9 +30,6 @@ class ProprietariosView(PermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_month = timezone.now().month
-        current_year = timezone.now().year
-
         context['total_proprietarios'] = Proprietario.objects.count()
         context['proprietarios_ativos'] = Proprietario.objects.count()
         context['novos_proprietarios_mes'] = 0 

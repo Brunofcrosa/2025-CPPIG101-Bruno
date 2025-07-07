@@ -1,8 +1,6 @@
 from django import forms
 from .models import Imovel
-from transacao.models import Transacao
 from decimal import Decimal
-import re
 
 class ImovelModelForm(forms.ModelForm):
     class Meta:
@@ -12,7 +10,16 @@ class ImovelModelForm(forms.ModelForm):
             'proprietario',
             'foto',
             'disponivel_locacao',
-            'valorVenda',          
+            'zona_valorizacao',
+            'valorVenda',
+            'valorAluguel',  
+            'cep',
+            'estado', 
+            'cidade',
+            'bairro',       
+            'rua',
+            'numero',
+            'complemento',
             'valorIPTU',           
             'valorCondominio',     
             'areaTotal',           
@@ -25,7 +32,6 @@ class ImovelModelForm(forms.ModelForm):
             'caracteristicas',     
             'comodidades',         
             'descricao',
-            'zona_valorizacao',       
         ]
         
         error_messages = {
