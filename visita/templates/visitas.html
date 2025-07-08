@@ -27,6 +27,7 @@
                                         <th>Corretor</th>
                                         <th>Imóvel</th>
                                         <th>Data</th>
+                                        <th>Status</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -37,6 +38,7 @@
                                         <td>{{ visita.corretor.nome|default:"-" }}</td>
                                         <td>{{ visita.imovel.nome|default:"-" }}</td>
                                         <td>{{ visita.data|date:"d/m/Y"|default:"-" }} às {{visita.hora}}</td>
+                                        <td>{{ visita.get_status_display }}</td>
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
                                                 {% if perms.visita.change_visita %}

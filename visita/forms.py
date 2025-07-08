@@ -7,7 +7,7 @@ from .models import Visita
 class VisitaModelForm(forms.ModelForm):
     class Meta:
         model = Visita
-        fields = ['imovel', 'corretor', 'cliente', 'data', 'hora']
+        fields = ['imovel', 'corretor', 'cliente', 'data', 'hora', 'status']
 
         widgets = {
             'data': forms.DateInput(

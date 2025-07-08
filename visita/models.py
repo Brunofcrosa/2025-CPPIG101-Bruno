@@ -7,6 +7,13 @@ class Visita(models.Model):
     data = models.DateField('Data:', null=True)
     hora = models.TimeField('Hora:', null=True, blank=True) 
     codigoVisita = models.CharField('Código da Visita', max_length=10, unique=True, help_text='Código único da visita')
+    STATUS_ESCOLHAS = (
+        ('agendada', 'Agendada'),
+        ('concluida', 'Concluída'),
+        ('cancelada', 'Cancelada'),
+    )
+    status = models.CharField(max_length=10, choices=STATUS_ESCOLHAS, default='agendada')
+    
 
     class Meta:
         permissions = (('fechar_agendamento', 'Permite fazer o fechamento de uma visita'),)

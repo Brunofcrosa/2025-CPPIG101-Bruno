@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmação de Agendamento de Visita</title>
+</head>
+<body>
+    <p>Olá {{ cliente.nome }},</p>
+    <p>Sua visita ao imóvel <strong>{{ visita.imovel.nome }}</strong> (Código: {{ visita.imovel.codigoImovel }}) foi agendada/confirmada com sucesso!</p>
+    <p>Detalhes da Visita:</p>
+    <ul>
+        <li><strong>Imóvel:</strong> {{ visita.imovel.rua }}, {{ visita.imovel.numero }} - {{ visita.imovel.bairro }}, {{ visita.imovel.cidade }}</li>
+        <li><strong>Corretor:</strong> {{ visita.corretor.nome }} (Contato: {{ visita.corretor.email }})</li>
+        <li><strong>Data:</strong> {{ visita.data|date:"d/m/Y" }}</li>
+        <li><strong>Hora:</strong> {{ visita.hora|time:"H:i" }}</li>
+        <li><strong>Status:</strong> {{ visita.get_status_display }}</li>
+    </ul>
+    <p>Aguardamos você!</p>
+    <p>Atenciosamente,<br>Sua Imobiliária</p>
+</body>
+</html>
