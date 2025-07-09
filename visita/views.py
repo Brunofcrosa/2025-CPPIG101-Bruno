@@ -56,28 +56,28 @@ class VisitaAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('visita')
     success_message = 'Agendamento cadastrado com sucesso!'
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
+   # def form_valid(self, form):
+    #    response = super().form_valid(form)
         
        
-        assunto = "Confirmação de Agendamento de Visita"
-        template_html = "visita_confirmacao.html"
-        contexto = {'visita': self.object, 'cliente': self.object.cliente}
-        destinatario_email = self.object.cliente.email
+      #  assunto = "Confirmação de Agendamento de Visita"
+      #  template_html = "visita_confirmacao.html"
+       # contexto = {'visita': self.object, 'cliente': self.object.cliente}
+       # destinatario_email = self.object.cliente.email
         
-        html_content = render_to_string(template_html, contexto)
-        text_content = strip_tags(html_content) 
+       # html_content = render_to_string(template_html, contexto)
+       # text_content = strip_tags(html_content) 
 
-        email = EmailMultiAlternatives(
-            assunto,
-            text_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [destinatario_email]
-        )
-        email.attach_alternative(html_content, "text/html")
-        email.send() 
+      #  email = EmailMultiAlternatives(
+       #     assunto,
+       #     text_content,
+        #    settings.DEFAULT_FROM_EMAIL,
+         #   [destinatario_email]
+        #)
+        #email.attach_alternative(html_content, "text/html")
+        #email.send() 
 
-        return response
+        #return response
 
 class VisitaUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_required = 'visita.change_visita'
@@ -88,27 +88,27 @@ class VisitaUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView)
     success_url = reverse_lazy('visita')
     success_message = 'Agendamento alterado com sucesso!'
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
+    #def form_valid(self, form):
+     #   response = super().form_valid(form)
         
-        assunto = "Atualização de Agendamento de Visita"
-        template_html = "visita_confirmacao.html"
-        contexto = {'visita': self.object, 'cliente': self.object.cliente}
-        destinatario_email = self.object.cliente.email
+      #  assunto = "Atualização de Agendamento de Visita"
+       # template_html = "visita_confirmacao.html"
+        #contexto = {'visita': self.object, 'cliente': self.object.cliente}
+        #destinatario_email = self.object.cliente.email
         
-        html_content = render_to_string(template_html, contexto)
-        text_content = strip_tags(html_content)
+        #html_content = render_to_string(template_html, contexto)
+        #text_content = strip_tags(html_content)
 
-        email = EmailMultiAlternatives(
-            assunto,
-            text_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [destinatario_email]
-        )
-        email.attach_alternative(html_content, "text/html")
-        email.send() 
+        #email = EmailMultiAlternatives(
+         #   assunto,
+          #  text_content,
+           # settings.DEFAULT_FROM_EMAIL,
+           # [destinatario_email]
+       # )
+        #email.attach_alternative(html_content, "text/html")
+        #email.send() 
 
-        return response
+        #return response
 
 class VisitaDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
     permission_required = 'visita.delete_visita'

@@ -16,8 +16,8 @@ class IndexView(TemplateView):
         context['total_clientes'] = Cliente.objects.count()
         context['total_corretores'] = Corretor.objects.count()
         context['total_visitas'] = Visita.objects.filter(data__gte=timezone.now().date()).count()
-        context['imoveis_recentes'] = Imovel.objects.order_by('-last_updated')[:4]
-        context['visitas_recentes'] = Visita.objects.filter(data__gte=timezone.now().date()).order_by('data')[:4]
+        context['imoveis_recentes'] = Imovel.objects.order_by('-last_updated')[:2]
+        context['visitas_recentes'] = Visita.objects.filter(data__gte=timezone.now().date()).order_by('data')[:2]
         current_month = timezone.now().month
         current_year = timezone.now().year
         vendas_mes = Transacao.objects.filter(

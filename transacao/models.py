@@ -35,9 +35,9 @@ class Transacao(models.Model):
                 numero = 1
             self.codigoTransacao = f"{iniciais}{numero:03d}{finais}"
 
-        TAXA_VENDA_NORMAL = Decimal('0.05')
+        TAXA_VENDA_NORMAL = Decimal('0.003')
         TAXA_ALUGUEL_NORMAL = Decimal('0.08')
-        TAXA_VENDA_VALORIZACAO = Decimal('0.07')
+        TAXA_VENDA_VALORIZACAO = Decimal('0.002')
         TAXA_ALUGUEL_VALORIZACAO = Decimal('0.10')
 
         if self.tipoTransacao == 'Venda' and self.valorVenda is not None:
