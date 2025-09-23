@@ -12,7 +12,7 @@ echo.>> "%FILE%"
 cd /d "%REPO%"
 git add .
 git commit -m "fix"
-git push origin main
+git push origin master
 
 echo.
 echo Espaço adicionado e commit feito com sucesso!

@@ -45,3 +45,4 @@ As entidades que representam pessoas no sistema (Cliente, Corretor, Proprietári
 Formato de Telefone: O campo telefone aceita 10 ou 11 dígitos numéricos (incluindo o DDD) e é automaticamente formatado para (DD) XXXXX-XXXX ou (DD) XXXX-XXXX.
 Unicidade do E-mail: O campo e-mail deve ser único para cada pessoa cadastrada no sistema.
 
+
